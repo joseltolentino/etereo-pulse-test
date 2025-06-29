@@ -1,0 +1,143 @@
+<p>dinamic-form works!</p>
+<!-- <p-card [header]="formConfig.title" styleClass="dynamic-form-card">
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <div *ngFor="let field of formConfig.fields" class="p-field p-fluid">
+      <div class="field grid">
+        <label [for]="field.name" class="col-fixed" style="width: 100px"
+          >{{ field.label }}:
+        </label>
+
+        <input
+          *ngIf="['text', 'number', 'email'].includes(field.type)"
+          pInputText
+          [type]="field.type"
+          [id]="field.name"
+          [formControlName]="field.name"
+          [placeholder]="field.placeholder || ''"
+        />
+      </div>
+
+      <div class="">
+        <p-dropdown
+          *ngIf="field.type === 'select'"
+          [id]="field.name"
+          [formControlName]="field.name"
+          [options]="field.options"
+          optionLabel="label"
+          optionValue="value"
+          [placeholder]="field.placeholder || 'Selecciona una opción'"
+          [showClear]="true"
+        ></p-dropdown>
+      </div>
+
+      <div *ngIf="field.type === 'checkbox'" class="p-field-checkbox">
+        <p-checkbox
+          [id]="field.name"
+          [formControlName]="field.name"
+          [binary]="true"
+        ></p-checkbox>
+        <label [for]="field.name">{{ field.label }}</label>
+      </div>
+
+      <div *ngIf="field.type === 'radio'">
+        <div *ngFor="let option of field.options" class="p-field-radiobutton">
+          <p-radiobutton
+            [id]="field.name + '_' + option.value"
+            [name]="field.name"
+            [value]="option.value"
+            [formControlName]="field.name"
+          ></p-radiobutton>
+          <label [for]="field.name + '_' + option.value">{{
+            option.label
+          }}</label>
+        </div>
+      </div>
+
+      <div class="">
+        <p-datePicker
+          *ngIf="field.type === 'date'"
+          [formControlName]="field.name"
+          dateFormat="dd/mm/yy"
+          [showIcon]="true"
+          [placeholder]="field.placeholder || ''"
+          appendTo="body"
+          [iconDisplay]="'input'"
+          inputId="icondisplay"
+        >
+        </p-datePicker>
+      </div>
+
+      <div class="">
+        <textarea
+          *ngIf="field.type === 'textarea'"
+          pInputTextarea
+          [id]="field.name"
+          [formControlName]="field.name"
+          [placeholder]="field.placeholder || ''"
+          [rows]="3"
+          rows="5"
+          cols="30"
+        ></textarea>
+      </div>
+
+      <small
+        class="p-error"
+        *ngIf="
+          formGroup.get(field.name)?.invalid &&
+          formGroup.get(field.name)?.touched
+        "
+      >
+        <span *ngIf="formGroup.get(field.name)?.errors?.['required']"
+          >Este campo es requerido.</span
+        >
+        <span *ngIf="formGroup.get(field.name)?.errors?.['email']"
+          >Debe ser un email válido.</span
+        >
+        <span *ngIf="formGroup.get(field.name)?.errors?.['minlength']"
+          >Mínimo
+          {{ formGroup.get(field.name)?.errors?.['minlength'].requiredLength }}
+          caracteres.</span
+        >
+        <span *ngIf="formGroup.get(field.name)?.errors?.['maxlength']"
+          >Máximo
+          {{ formGroup.get(field.name)?.errors?.['maxlength'].requiredLength }}
+          caracteres.</span
+        >
+      </small>
+    </div>
+
+    <p-button
+      type="submit"
+      [label]="formConfig.submitButtonText"
+      [disabled]="formGroup.invalid"
+      icon="pi pi-check"
+      iconPos="right"
+    ></p-button>
+  </form>
+</p-card>
+ -->
+<!-- dinamic-form.component.html -->
+<!-- dinamic-form.component.html -->
+
+<p-card [header]="formConfig.title" styleClass="dynamic-form-card">
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <!-- Template para las labels de cada campo -->
+    <ng-template #labelTemplate let-field>
+      <div class="p-field p-fluid">
+        <label [for]="field.name">{{ field.label }}:</label>
+      </div>
+    </ng-template>
+
+    <!-- Punto de inyección de los componentes dinámicos -->
+    <ng-container #fieldHost></ng-container>
+
+    <!-- Botón de envío -->
+    <p-button
+      type="submit"
+      [label]="formConfig.submitButtonText || 'Guardar'"
+      [disabled]="formGroup.invalid"
+      icon="pi pi-check"
+      iconPos="right"
+    ></p-button>
+  </form>
+</p-card>

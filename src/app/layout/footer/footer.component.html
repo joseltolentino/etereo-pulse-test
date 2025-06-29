@@ -1,0 +1,125 @@
+<footer class="footer-clinic py-5 px-3 bg-blue-100">
+  <div
+    class="text-center md:flex md:justify-content-center md:align-items-stretch"
+  >
+    <div class="col-12 md:col-4 lg:col-3 mb-3">
+      <div class="">
+        <img
+          src="/images/logo-mkp-celeste.jpg"
+          alt="Logo de la Clínica"
+          class="footer-logo mb-3 w-4 bg-blue-100"
+        />
+        <p class="text-light">
+          **Tu Clínica Médica**<br />
+          Av. Principal 123, Miraflores<br />
+          Lima, Perú
+        </p>
+        <p class="text-light">
+          <i class="pi pi-phone mr-2"></i> +51 987 654 321<br />
+          <i class="pi pi-envelope mr-2"></i> info#&64tuclinica.com
+        </p>
+      </div>
+    </div>
+
+    <div class="col-12 md:col-4 lg:col-2 mb-3">
+      <h5 class="uppercase mb-3">Enlaces Rápidos</h5>
+      <ul class="list-none p-0">
+        <li class="mb-2">
+          <a routerLink="/servicios" class="footer-link">Nuestros Servicios</a>
+        </li>
+        <li class="mb-2">
+          <a routerLink="/doctores" class="footer-link"
+            >Nuestros Especialistas</a
+          >
+        </li>
+        <li class="mb-2">
+          <a routerLink="/citas" class="footer-link">Agendar Cita</a>
+        </li>
+        <li class="mb-2">
+          <a routerLink="/pacientes" class="footer-link"
+            >Información Pacientes</a
+          >
+        </li>
+        <li class="mb-2">
+          <a routerLink="/contacto" class="footer-link">Contacto</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-12 md:col-4 lg:col-4 mb-3">
+      <h5 class="uppercase mb-3">Mantente Informado</h5>
+      <p class="text-light">
+        Suscríbete a nuestro boletín para recibir noticias y promociones.
+      </p>
+      <form>
+        <div class="field fluid mb-2">
+          <span class="p-float-label">
+            <input
+              id="emailInput"
+              type="email"
+              pInputText
+              formControlName="email"
+            />
+            <label for="emailInput"> Tu Correo Electrónico</label>
+          </span>
+          <small class="p-error hidden">
+            <span>El correo es requerido.</span>
+            <span>Introduce un correo válido.</span>
+          </small>
+        </div>
+        <button
+          class="mt-4"
+          pButton
+          type="submit"
+          label="Suscribirme"
+          icon="pi pi-send"
+        ></button>
+        <p class="mt-2 text-sm text-success">{{ subscriptionMessage }}</p>
+      </form>
+    </div>
+
+    <div class="col-12 md:col-4 lg:col-2 mb-3 text-center md:text-start">
+      <h5 class="uppercase mb-3">Síguenos</h5>
+      <div class="flex justify-content-center md:justify-content-start">
+        <a
+          href="https://facebook.com/tuclinica"
+          target="_blank"
+          class="p-button p-button-rounded p-button-text p-button-plain mr-2"
+          ><i class="pi pi-facebook" style="font-size: 1.8rem"></i
+        ></a>
+        <a
+          href="https://twitter.com/tuclinica"
+          target="_blank"
+          class="p-button p-button-rounded p-button-text p-button-plain mr-2"
+          ><i class="pi pi-twitter" style="font-size: 1.8rem"></i
+        ></a>
+        <a
+          href="https://instagram.com/tuclinica"
+          target="_blank"
+          class="p-button p-button-rounded p-button-text p-button-plain"
+          ><i class="pi pi-instagram" style="font-size: 1.8rem"></i
+        ></a>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-4 footer-divider" />
+
+  <div
+    class="grid nogutter justify-content-between align-items-center text-center md:text-start"
+  >
+    <div class="col-12 md:col-6 mb-2 md:mb-0">
+      <p class="text-sm text-light">
+        Tu Clínica Médica. Todos los derechos reservados.
+      </p>
+    </div>
+    <div class="col-12 md:col-6 md:text-end">
+      <a routerLink="/politica-privacidad" class="footer-link mr-3"
+        >Política de Privacidad</a
+      >
+      <a routerLink="/terminos-condiciones" class="footer-link"
+        >Términos y Condiciones</a
+      >
+    </div>
+  </div>
+</footer>

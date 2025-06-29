@@ -1,0 +1,9 @@
+<p>patient-form works!</p>
+<app-dynamic-form
+  *ngIf="formConfig && pacienteFormGroup"
+  [formConfig]="formConfig"
+  [formGroup]="pacienteFormGroup"
+  (formSubmit)="onFormSubmit($event)"
+>
+</app-dynamic-form>
+<div *ngIf="!formConfig || !pacienteFormGroup">Cargando formulario...</div>

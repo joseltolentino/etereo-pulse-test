@@ -1,0 +1,56 @@
+<nav class="w-full">
+  <div class="card flex">
+    <div
+      class="md:flex md:justify-content-between align-items-center col-12 bg-blue-100"
+    >
+      <div class="bg-white md:col-3 text-center md:text-left border-round">
+        <img
+          src="/images/logo-mkp-celeste.jpg"
+          class="w-3 md:w-4"
+          alt="logo de etereo"
+        />
+      </div>
+      <div class="">
+        <p-menubar
+          [model]="items"
+          styleClass="col-12 bg-blue-100 text-white"
+          [style]="{ 'background-color': '#0056b3' }"
+        >
+          <p-autoComplete
+            [formControl]="searchControl"
+            [suggestions]="filteredResults"
+            (completeMethod)="search($event)"
+            (onSelect)="handleSelect($event.value)"
+            (onBlur)="onAutoCompleteBlur()"
+            field="name"
+            placeholder="Buscar servicios o doctores..."
+            [dropdown]="false"
+            [minLength]="3"
+            [autoHighlight]="true"
+            [forceSelection]="false"
+            [showEmptyMessage]="true"
+            emptyMessage="No se encontraron resultados"
+            [panelStyle]="{ width: 'auto', 'min-width': '20rem' }"
+            styleClass="p-element w-5"
+          >
+            <ng-template let-item pTemplate="item">
+              <div class="flex align-items-center gap-2">
+                <div>
+                  <span class="font-bold">{{ item.name }}</span>
+                  <span class="text-sm text-500 ml-2">({{ item.type }})</span>
+                  <div *ngIf="item.description" class="text-sm text-600">
+                    {{ item.description }}
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+
+            <ng-template pTemplate="inputicon">
+              <span class="pi pi-search"></span>
+            </ng-template>
+          </p-autoComplete>
+        </p-menubar>
+      </div>
+    </div>
+  </div>
+</nav>
