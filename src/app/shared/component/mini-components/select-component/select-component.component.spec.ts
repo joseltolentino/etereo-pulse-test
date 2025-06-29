@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MainLayaoutComponent } from './main-layaout.component';
+import { SelectComponentComponent } from './select-component.component';
 
-describe('MainLayaoutComponent', () => {
-  let component: MainLayaoutComponent;
-  let fixture: ComponentFixture<MainLayaoutComponent>;
+describe('SelectComponentComponent', () => {
+  let component: SelectComponentComponent;
+  let fixture: ComponentFixture<SelectComponentComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MainLayaoutComponent]
+      imports: [SelectComponentComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MainLayaoutComponent);
+    fixture = TestBed.createComponent(SelectComponentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

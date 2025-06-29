@@ -1,0 +1,12 @@
+<div class="flex flex-col gap-2">
+    <label [for]="id">{{ label }}</label>
+    <p-autocomplete  
+        [inputId]="id"
+        [formControl]="control"
+        [suggestions]="filteredOptions"
+        (completeMethod)="filter($event)"
+        [field]="'label'"
+        [placeholder]="placeholder"
+        [dropdown]="true" 
+        />
+</div>
