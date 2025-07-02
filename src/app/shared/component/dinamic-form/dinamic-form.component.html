@@ -1,6 +1,9 @@
-<h1>testttttt</h1>
-<form [formGroup]="entityForm">
-  <ng-container *ngFor="let ctrl of controlsToRender">
-    <ng-container *ngComponentOutlet="ctrl.component; inputs: ctrl.props" />
-  </ng-container>
-</form>
+<div class="w-full md:w-6">
+  <p class="mb-3 text-center">Formulario Dinamico</p>
+
+  <form [formGroup]="entityForm">
+    <ng-container *ngFor="let ctrl of controlsToRender">
+      <ng-container *ngComponentOutlet="ctrl.component; inputs: ctrl.props" />
+    </ng-container>
+  </form>
+</div>

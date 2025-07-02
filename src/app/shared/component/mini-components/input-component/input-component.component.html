@@ -4,7 +4,12 @@
     <small id="username-help">Enter your username to reset your password.</small>
 </div> -->
 
-<div class="flex flex-col gap-2">
-  <label [for]="id">{{ label }}</label>
-  <input pInputText [id]="id" [placeholder]="placeholder" [formControl]="control" />
+<div class="flex flex-col gap-3 mb-2">
+  <label class="col-6" [for]="id">{{ label }}</label>
+  <input
+    pInputText
+    [id]="id"
+    [placeholder]="placeholder"
+    [formControl]="control"
+  />
 </div>

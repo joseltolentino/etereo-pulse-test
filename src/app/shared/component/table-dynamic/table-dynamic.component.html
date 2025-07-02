@@ -1,0 +1,43 @@
+<p>table-dynamic works!</p>
+
+<p-table
+  *ngIf="filas && columnas.length > 0"
+  [value]="filas"
+  [responsiveLayout]="'scroll'"
+  [paginator]="true"
+  [rows]="5"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th *ngFor="let col of columnas">{{ col.header }}</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-rowData>
+    <tr>
+      <td *ngFor="let col of columnas">
+        <ng-container [ngSwitch]="col.type">
+          <img *ngSwitchCase="'image'" [src]="rowData[col.field]" width="50" />
+          <span *ngSwitchCase="'date'">{{
+            rowData[col.field] | date : "short"
+          }}</span>
+          <button
+            *ngSwitchCase="'actions'"
+            pButton
+            icon="pi pi-pencil"
+            label="Editar"
+            (click)="editar(rowData)"
+          ></button>
+
+          <span *ngSwitchDefault>{{ rowData[col.field] }}</span>
+        </ng-container>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+<div
+  *ngIf="!filas || columnas.length === 0"
+  style="text-align: center; padding: 20px"
+>
+  Cargando datos de la tabla...
+</div>

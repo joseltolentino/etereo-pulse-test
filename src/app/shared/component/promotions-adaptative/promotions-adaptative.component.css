@@ -1,0 +1,16 @@
+/* Algunos estilos para el contenido dentro del sidebar/cards */
+.p-sidebar .p-card {
+  margin-bottom: 1rem; /* Espacio entre las cards dentro del sidebar */
+}
+
+/* Estilos para las imágenes si no usas w-full directamente en el img */
+img.w-full {
+  width: 100%;
+  display: block; /* Elimina espacio extra debajo de la imagen */
+}
+
+/* Puedes añadir más estilos generales para los títulos, descripciones, etc. */
+h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}

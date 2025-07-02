@@ -1,0 +1,69 @@
+<p>promotions-adaptative works!</p>
+<div class="hidden md:block">
+  <p-button
+    (click)="sidebarVisible = true"
+    icon="pi pi-megaphone"
+    label="Ver Promociones"
+  />
+</div>
+
+<p-sidebar
+  [(visible)]="sidebarVisible"
+  position="right"
+  class="hidden md:block"
+>
+  <ng-template pTemplate="header">
+    <h3>¡Ofertas Exclusivas de la Clínica!</h3>
+  </ng-template>
+  <div class="flex flex-column p-gap-3">
+    <p-card
+      *ngFor="let promo of promotions"
+      [header]="promo.title"
+      [style]="{ width: '100%' }"
+    >
+      <ng-template pTemplate="header">
+        <img
+          [src]="promo.image"
+          alt="Promoción"
+          class="w-full"
+          style="max-height: 150px; object-fit: cover"
+        />
+      </ng-template>
+      <p>{{ promo.description }}</p>
+      <ng-template pTemplate="footer">
+        <p-button
+          [label]="promo.cta"
+          styleClass="button-sm button-raised  w-full"
+        ></p-button>
+      </ng-template>
+    </p-card>
+  </div>
+</p-sidebar>
+
+<div class="block md:hidden p-4">
+  <h2 class="text-xl font-bold mb-4">Nuestras Promociones del Mes</h2>
+
+  <div class="flex flex-column gap-3">
+    <p-card
+      *ngFor="let promo of promotions"
+      [header]="promo.title"
+      [style]="{ width: '100%' }"
+    >
+      <ng-template pTemplate="header">
+        <img
+          [src]="promo.image"
+          alt="Promoción"
+          class="w-full"
+          style="max-height: 150px; object-fit: cover"
+        />
+      </ng-template>
+      <p>{{ promo.description }}</p>
+      <ng-template pTemplate="footer">
+        <p-button
+          [label]="promo.cta"
+          styleClass="p-button-sm p-button-raised p-button-success w-full"
+        ></p-button>
+      </ng-template>
+    </p-card>
+  </div>
+</div>
