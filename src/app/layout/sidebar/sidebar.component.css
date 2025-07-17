@@ -1,0 +1,4 @@
+/* Para ayudar con la transición móvil */
+aside {
+  will-change: transform;
+}

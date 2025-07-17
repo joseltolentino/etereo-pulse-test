@@ -1,26 +1,25 @@
+import { Component, OnInit } from '@angular/core';
 import {
-  Component,
-  OnInit,
-} from '@angular/core';
-import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+  ReactiveFormsModule,
+  FormGroup,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FormConfig, Propiedad } from '../../../core/interfaces/form-config';
 import { InputComponentComponent } from '../mini-components/input-component/input-component.component';
 import { SelectComponentComponent } from '../mini-components/select-component/select-component.component';
 import { AutocompleteComponentComponent } from '../mini-components/autocomplete-component/autocomplete-component.component';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-dynamic-form',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule
-  ],
+  imports: [CommonModule, ReactiveFormsModule, CardModule],
   templateUrl: `./dinamic-form.component.html`,
   styleUrls: ['./dinamic-form.component.css'],
 })
 export class DynamicFormComponent implements OnInit {
-
   entityForm!: FormGroup;
   entity!: FormConfig;
   controlsToRender: any[] = [];
@@ -204,16 +203,14 @@ export class DynamicFormComponent implements OnInit {
     this.entity = JSON.parse(this.jsonConfigString);
     console.log(this.entity);
     this.buildForm();
-    
   }
 
-  buildForm(){
+  buildForm() {
     const group: Record<string, FormControl> = {};
     const controls: any[] = [];
 
     for (const prop of this.entity.propiedades) {
-      
-      const validators = this.getValidatorsToControl(prop);     
+      const validators = this.getValidatorsToControl(prop);
 
       const control = new FormControl('', validators);
 
@@ -260,12 +257,15 @@ export class DynamicFormComponent implements OnInit {
     this.controlsToRender = controls;
   }
 
-  getValidatorsToControl(prop: Propiedad){
+  getValidatorsToControl(prop: Propiedad) {
     const validators = [];
 
-    if (prop.validaciones.includes('required')) validators.push(Validators.required);
+    if (prop.validaciones.includes('required'))
+      validators.push(Validators.required);
 
-    const maxLengthRule = prop.validaciones.find((v: string) => v.startsWith('maxLength'));
+    const maxLengthRule = prop.validaciones.find((v: string) =>
+      v.startsWith('maxLength')
+    );
 
     if (maxLengthRule) {
       const value = parseInt(maxLengthRule.split(':')[1], 10);

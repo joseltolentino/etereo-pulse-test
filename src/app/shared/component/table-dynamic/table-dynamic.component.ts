@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { TableService } from './table.service';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-table-dynamic',
   standalone: true,
-  imports: [CommonModule, TableModule, ButtonModule],
+  imports: [CommonModule, TableModule, ButtonModule, CardModule],
   templateUrl: './table-dynamic.component.html',
 })
 export class TableDynamicComponent implements OnInit {

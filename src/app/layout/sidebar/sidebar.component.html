@@ -1,1 +1,50 @@
-<p>sidebar works!</p>
+<ng-container *ngIf="isMobile">
+  <p-drawer
+    [(visible)]="visible"
+    header="Clinica"
+    [dismissible]="true"
+    [showCloseIcon]="true"
+    position="left"
+    [baseZIndex]="10000"
+    [style]="{ width: '250px' }"
+    (onHide)="onDrawerHide()"
+    class="md:hidden"
+  >
+    <h3>Opciones</h3>
+    <div
+      pRipple
+      pStyleClass="@next"
+      enterFromClass="hidden"
+      enterActiveClass="animate-slidedown"
+      leaveToClass="hidden"
+      leaveActiveClass="animate-slideup"
+      class="p-4 flex align-items-center justify-content-between text-surface-600 dark:text-surface-200 cursor-pointer p-ripple"
+    >
+      <span class="font-medium">FAVORITES</span>
+      <i class="pi pi-chevron-down ml-auto"></i>
+    </div>
+  </p-drawer>
+</ng-container>
+<p-button
+  icon="pi pi-bars"
+  (click)="toggleSidebar()"
+  rounded="true"
+  styleClass="fixed top-4 left-4 z-[1100] border border-green-400 hover:bg-green-100 p-button-text md:z-11000"
+/>
+<ng-container *ngIf="!isMobile && visible">
+  <div [style]="{ width: '350px' }" class="hidden md:block p-4 bg-white">
+    <h3>Clinica</h3>
+    <div
+      pRipple
+      pStyleClass="@next"
+      enterFromClass="hidden"
+      enterActiveClass="animate-slidedown"
+      leaveToClass="hidden"
+      leaveActiveClass="animate-slideup"
+      class="p-4 mr-6 flex align-items-center justify-content-between text-surface-600 dark:text-surface-200 cursor-pointer p-ripple"
+    >
+      <span class="font-medium">FAVORITES</span>
+      <i class="pi pi-chevron-down ml-auto"></i>
+    </div>
+  </div>
+</ng-container>

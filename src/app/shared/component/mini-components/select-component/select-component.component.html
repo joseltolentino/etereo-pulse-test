@@ -1,4 +1,4 @@
-<div class="flex flex-col mb-2 gap-3">
+<div class="flex flex-col mb-3 gap-3">
   <label class="col-6" [for]="id">{{ label }}</label>
   <p-select
     [formControl]="control"
@@ -7,5 +7,6 @@
     optionLabel="label"
     optionValue="value"
     [placeholder]="placeholder"
+    class="col-5"
   />
 </div>

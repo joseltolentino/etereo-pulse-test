@@ -1,14 +1,13 @@
 @import "primeicons/primeicons.css";
 
-html,
-body {
-  height: 100%;
-}
+
+
+
 body {
   margin: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
-  
+  font-family: "Roboto", sans-serif;
 }
+
 header,footer{
   width: 100%;
 }
@@ -16,19 +15,16 @@ header,footer{
 h2 {
   text-align: center;
   font-weight: 400;
-  color: var(--color-1);
   margin-bottom: 0px;
 }
 .sub-title {
   font-weight: 300;
-  color: var(--color-1);
 }
+
+
 .container {
   width: 100%;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding: 15px;
   margin-left: auto;
   margin-right: auto;
   min-height: 80%;
@@ -58,4 +54,7 @@ h2 {
    
   }
  
+}
+.scrollNoVisible::-webkit-scrollbar {
+ display: none;
 }
