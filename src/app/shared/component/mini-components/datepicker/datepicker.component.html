@@ -1,0 +1,10 @@
+<div class="flex flex-column justify-content-between gap-3">
+  <label class="col-6" [for]="id">{{ label }}</label>
+  <p-datepicker
+    [formControl]="control"
+    [inputId]="id"
+    [placeholder]="placeholder"
+    dateFormat="dd/mm/yy"
+    [showIcon]="true"
+  />
+</div>

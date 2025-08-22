@@ -1,0 +1,20 @@
+<div class="p-4">
+  <p-card header="Formulario de citas">
+    <!--  <app-dynamic-form
+      [tipoDeDiseno]="'moderno'"
+      [configFromParent]="formConfig"
+      (formCreated)="onFormCreated($event)"
+    >
+    </app-dynamic-form> -->
+    <app-dynamic-form
+      [tipoDeDiseno]="'moderno'"
+      [configFromParent]="formConfig"
+      [searchFunctions]="searchFunctions"
+      (formCreated)="onFormCreated($event)"
+    >
+    </app-dynamic-form>
+    <div class="">
+      <button pButton label="Registrar Cita" severity="primary"></button>
+    </div>
+  </p-card>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+/* import { Component, OnInit, Injector, inject, Input } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormGroup,
@@ -20,6 +20,8 @@ import { CardModule } from 'primeng/card';
   styleUrls: ['./dinamic-form.component.css'],
 })
 export class DynamicFormComponent implements OnInit {
+  @Input() configFromParent!: FormConfig;
+
   entityForm!: FormGroup;
   entity!: FormConfig;
   controlsToRender: any[] = [];
@@ -197,10 +199,12 @@ export class DynamicFormComponent implements OnInit {
         }
       ]
     }`;
+  private injector = inject(Injector);
   constructor() {}
 
   ngOnInit(): void {
-    this.entity = JSON.parse(this.jsonConfigString);
+    
+    this.entity = this.configFromParent || JSON.parse(this.jsonConfigString);
     console.log(this.entity);
     this.buildForm();
   }
@@ -257,19 +261,268 @@ export class DynamicFormComponent implements OnInit {
     this.controlsToRender = controls;
   }
 
+
   getValidatorsToControl(prop: Propiedad) {
     const validators = [];
 
-    if (prop.validaciones.includes('required'))
+    const validaciones = Array.isArray(prop.validaciones)
+      ? prop.validaciones
+      : [];
+
+    if (validaciones.includes('required')) {
       validators.push(Validators.required);
+    }
 
-    const maxLengthRule = prop.validaciones.find((v: string) =>
-      v.startsWith('maxLength')
+    const maxLengthRule = validaciones.find((v: string) =>
+      v.startsWith('maxLength:')
     );
-
     if (maxLengthRule) {
-      const value = parseInt(maxLengthRule.split(':')[1], 10);
-      validators.push(Validators.maxLength(value));
+      const max = parseInt(maxLengthRule.split(':')[1], 10);
+      validators.push(Validators.maxLength(max));
+    }
+
+    const minLengthRule = validaciones.find((v: string) =>
+      v.startsWith('minLength:')
+    );
+    if (minLengthRule) {
+      const min = parseInt(minLengthRule.split(':')[1], 10);
+      validators.push(Validators.minLength(min));
+    }
+
+    return validators;
+  }
+
+  createInjector(data: Record<string, any>) {
+    return Injector.create({
+      providers: Object.keys(data).map((key) => ({
+        provide: key,
+        useValue: data[key],
+      })),
+      parent: this.injector,
+    });
+  }
+}
+ */
+/*gemini*/
+import {
+  Component,
+  OnInit,
+  Injector,
+  inject,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges,
+  Signal,
+} from '@angular/core';
+import {
+  ReactiveFormsModule,
+  FormGroup,
+  FormControl,
+  Validators,
+  ValidatorFn, // Importa ValidatorFn
+} from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FormConfig, Propiedad } from '../../../core/interfaces/form-config';
+import { InputComponentComponent } from '../mini-components/input-component/input-component.component';
+import { SelectComponentComponent } from '../mini-components/select-component/select-component.component';
+import { AutocompleteComponentComponent } from '../mini-components/autocomplete-component/autocomplete-component.component';
+import { CardModule } from 'primeng/card';
+import { PasswordComponent } from '../mini-components/password/password.component';
+import { TextareaComponent } from '../mini-components/textarea/textarea.component';
+import { DatepickerComponent } from '../mini-components/datepicker/datepicker.component';
+import { CheckboxComponent } from '../mini-components/checkbox/checkbox.component';
+
+export interface PropiedadConValor extends Propiedad {
+  value?: any; // La propiedad value ahora es opcional
+}
+export interface FormConfigConValor extends FormConfig {
+  propiedades: PropiedadConValor[];
+}
+
+@Component({
+  selector: 'app-dynamic-form',
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    CardModule,
+    // Asegúrate de importar los componentes dinámicos aquí
+    InputComponentComponent,
+    SelectComponentComponent,
+    AutocompleteComponentComponent,
+    PasswordComponent,
+    TextareaComponent,
+    DatepickerComponent,
+    CheckboxComponent,
+  ],
+  templateUrl: `./dinamic-form.component.html`,
+  styleUrls: ['./dinamic-form.component.css'],
+})
+export class DynamicFormComponent {
+  @Input() tipoDeDiseno: 'moderno' | 'clasico' | 'modernoII' = 'moderno';
+  @Input() configFromParent!: FormConfigConValor; // Input para recibir la configuración del padre
+  @Output() formCreated = new EventEmitter<FormGroup>(); // Evento para emitir el FormGroup creado
+  @Input() searchFunctions!: { [key: string]: (query: string) => void };
+  @Input() searchOptions!: { [key: string]: Signal<any[]> };
+
+  entityForm!: FormGroup;
+  entity!: FormConfigConValor;
+  controlsToRender: any[] = [];
+
+  // Eliminamos el jsonConfigString hardcodeado, ahora usaremos configFromParent
+
+  protected injector = inject(Injector); // Inyector para ngComponentOutlet
+
+  constructor() {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    // Si la configuración cambia (por ejemplo, llega después de una carga HTTP)
+    if (changes['configFromParent'] && this.configFromParent) {
+      this.entity = this.configFromParent;
+      this.buildForm();
+      this.formCreated.emit(this.entityForm);
+    }
+  }
+
+  /**
+   * Construye el FormGroup y la lista de controles a renderizar.
+   */
+  buildForm() {
+    const group: Record<string, FormControl> = {};
+    const controls: any[] = [];
+
+    for (const prop of this.configFromParent.propiedades) {
+      const validators = this.getValidatorsToControl(prop);
+      const control = new FormControl(
+        { value: prop.value ?? '', disabled: prop.isReadOnly ?? false }, // ✅ Ahora se pasa el valor directamente
+        validators
+      );
+
+      group[prop.columnName] = control;
+
+      // Determina qué componente renderizar según el inputType
+      switch (prop.inputType) {
+        case 'text':
+          // Añade 'password' para usar el mismo InputComponentComponent
+          controls.push({
+            component: InputComponentComponent,
+            props: {
+              control,
+              id: prop.columnName,
+              label: prop.label,
+              placeholder: prop.placeholder,
+              type: prop.inputType, // Pasa el tipo de input (text, password)
+            },
+          });
+          break;
+        case 'password':
+          controls.push({
+            component: PasswordComponent,
+            props: {
+              control,
+              id: prop.columnName,
+              label: prop.label,
+              placeholder: prop.placeholder,
+            },
+          });
+          break;
+        case 'select':
+          controls.push({
+            component: SelectComponentComponent,
+            props: {
+              control,
+              id: prop.columnName,
+              label: prop.label,
+              placeholder: prop.placeholder,
+              options: prop.selectItems || [],
+            },
+          });
+          break;
+        case 'autocomplete':
+          if (prop.searchKey && this.searchFunctions && this.searchOptions) {
+            controls.push({
+              component: AutocompleteComponentComponent,
+              props: {
+                control,
+                id: prop.columnName,
+                label: prop.label,
+                placeholder: prop.placeholder,
+                filterFunction: this.searchFunctions[prop.searchKey!],
+                suggestions: this.searchOptions[prop.searchKey!], // 👈 lee el signal aquí
+              },
+            });
+          } else {
+            // Esto te dará una alerta si olvidas configurar el searchKey en el futuro
+            console.warn(
+              `Autocomplete field '${prop.columnName}' is missing 'searchKey'.`
+            );
+          }
+          break;
+        case 'textarea':
+          controls.push({
+            component: TextareaComponent,
+            props: {
+              control,
+              id: prop.columnName,
+              label: prop.label,
+              placeholder: prop.placeholder,
+            },
+          });
+          break;
+        case 'date':
+          controls.push({
+            component: DatepickerComponent,
+            props: {
+              control,
+              id: prop.columnName,
+              label: prop.label,
+              placeholder: prop.placeholder,
+            },
+          });
+          break;
+        case 'checkbox':
+          controls.push({
+            component: CheckboxComponent,
+            props: {
+              control,
+              id: prop.columnName,
+              label: prop.label,
+            },
+          });
+          break;
+        default:
+          console.warn(
+            `Tipo de input no soportado: ${prop.inputType} para ${prop.columnName}`
+          );
+          break;
+      }
+    }
+
+    this.entityForm = new FormGroup(group);
+    this.controlsToRender = controls;
+    this.entityForm.enable();
+  }
+
+  private getValidatorsToControl(prop: Propiedad): ValidatorFn[] {
+    const validators: ValidatorFn[] = [];
+
+    if (prop.validaciones) {
+      for (const validation of prop.validaciones) {
+        if (validation === 'required') {
+          validators.push(Validators.required);
+        } else if (validation.startsWith('minLength:')) {
+          const minLength = parseInt(validation.split(':')[1], 10);
+          validators.push(Validators.minLength(minLength));
+        } else if (validation.startsWith('maxLength:')) {
+          const maxLength = parseInt(validation.split(':')[1], 10);
+          validators.push(Validators.maxLength(maxLength));
+        } else if (validation === 'email') {
+          validators.push(Validators.email);
+        }
+        // Puedes añadir más validadores aquí (pattern, min, max, etc.)
+      }
     }
     return validators;
   }

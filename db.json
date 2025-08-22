@@ -1,0 +1,159 @@
+{
+  "patients": [
+    {
+      "id": "1",
+      "nombre": "María ",
+      "apellido": "Lopez",
+      "edad": 38,
+      "dni": "987654321",
+      "fechanacimiento": "28 setiembre 1987",
+      "telefono": "555-5678",
+      "fechaNacimiento": "22/11/1987",
+      "genero": "femenino",
+      "direccion": "jr. Puno 225",
+      "email": "jhkjif@gmail",
+      "tipoEnfermedad": "Hipertensión",
+      "comentarios": "El paciente muestra signos de mejoría con el nuevo tratamiento.",
+      "recomendaciones": "Continuar con el mismo medicamento y agendar cita de seguimiento en un mes.",
+      "diagnosticos": "Diagnóstico inicial: Hipertensión. Diagnóstico actual: Estable."
+    },
+    {
+      "id": "2",
+      "nombre": "Juan ",
+      "apellido": "Perez",
+      "edad": 41,
+      "dni": "987654208",
+      "fechanacimiento": "2 Julio 1984",
+      "telefono": "555-5789",
+      "fechaNacimiento": "25/12 /87",
+      "genero": "masculino",
+      "direccion": "jr. Puno 225",
+      "email": "adrsnchez@gmail",
+      "comentarios": " ",
+      "recomendaciones": " ",
+      "diagnosticos": " "
+    },
+    {
+      "id": "3",
+      "nombre": "Luis Alberto",
+      "apellido": "Landeo",
+      "edad": 37,
+      "dni": "987763082",
+      "telefono": "555-5123",
+      "fechaNacimiento": "12/09/1990",
+      "comentarios": " ",
+      "recomendaciones": " ",
+      "diagnosticos": " "
+    },
+    {
+      "id": "4",
+      "nombre": "Carlos",
+      "fechaRegistro": "2025-06-29T09:30:00Z",
+      "fechaCita": "2025-07-01",
+      "apellido": "Rondon",
+      "fechaNacimiento": "28/03/1983",
+      "genero": "masculino",
+      "direccion": "av. alcazar 1004",
+      "telefono": "999992234",
+      "email": "rondon@gmail.com",
+      "comentarios": " ",
+      "recomendaciones": " ",
+      "diagnosticos": " "
+    },
+    {
+      "id": "5",
+      "nombre": "Lucía",
+      "foto": "https://i.pravatar.cc/50?img=2",
+      "fechaRegistro": "2025-06-29T09:30:00Z",
+      "apellido": "Mancilla",
+      "fechaNacimiento": "09/05/1999",
+      "genero": "femenino",
+      "direccion": "Calle Falsa 123",
+      "telefono": "120994764",
+      "email": "licvia@gmail.com",
+      "comentarios": " ",
+      "recomendaciones": " ",
+      "diagnosticos": " "
+    },
+    {
+      "id": "6",
+      "nombre": "Alice",
+      "edad": "30",
+      "ciudad": "New York",
+      "avatar": "https://placehold.co/50x50/FF5733/FFFFFF?text=A",
+      "fechaRegistro": "2023-01-15T10:00:00Z",
+      "email": "alice@example.com",
+      "apellido": "Carrillo",
+      "fechaNacimiento": "30/08/1987",
+      "genero": "femenino",
+      "direccion": "03 de Octubre s/n",
+      "telefono": "56781342",
+      "comentarios": " ",
+      "recomendaciones": " ",
+      "diagnosticos": " "
+    },
+    {
+      "id": "7",
+      "nombre": "Charlie",
+      "edad": "30",
+      "ciudad": "New York",
+      "fechaRegistro": "2023-01-15T10:00:00Z",
+      "foto": "https://i.pravatar.cc/50?img=2",
+      "telefono": "555-5123",
+      "apellido": "Berenson",
+      "fechaNacimiento": "09/05/1999",
+      "genero": "masculino",
+      "direccion": "manzana.\"H\" lote 4 Carapongo",
+      "email": "charlie@gmail.com",
+      "comentarios": " ",
+      "recomendaciones": " ",
+      "diagnosticos": " "
+    },
+    {
+      "id": "8",
+      "nombre": "Eve",
+      "edad": "42",
+      "ciudad": "Phoenix",
+      "foto": "https://placehold.co/50x50/A133FF/FFFFFF?text=E",
+      "fechaRegistro": "new Date('2023-05-10T16:20:00Z')",
+      "proyecto": "Alpha",
+      "apellido": "Calderon",
+      "fechaNacimiento": "22/10/1987",
+      "genero": "",
+      "direccion": "Av.Brasil 1021 ",
+      "telefono": "9912347715",
+      "email": "Eve-45@gmail.com",
+      "comentarios": " ",
+      "recomendaciones": " ",
+      "diagnosticos": " "
+    }
+  ],
+  "medicos": [
+    {
+      "id": "1",
+      "nombre": "Dr. Ramírez",
+      "especialidad": "Cardiología"
+    },
+    {
+      "id": "2",
+      "nombre": "Dra. Gómez",
+      "especialidad": "Pediatría"
+    }
+  ],
+  "citas": [
+    {
+      "id": "1",
+      "pacienteId": 1,
+      "medicoId": 2,
+      "fecha": "2025-08-09",
+      "hora": "10:30"
+    }
+  ],
+  "historias": [
+    {
+      "id": "1",
+      "pacienteId": 1,
+      "descripcion": "Consulta por dolor de pecho"
+    }
+  ]
+}

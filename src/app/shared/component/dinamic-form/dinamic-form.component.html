@@ -1,10 +1,13 @@
-<div class="w-full md:w-6">
-  <p-card>
-    <p class="mb-3 text-center text-blue-900">Formulario Dinamico</p>
-    <form [formGroup]="entityForm">
-      <ng-container *ngFor="let ctrl of controlsToRender">
-        <ng-container *ngComponentOutlet="ctrl.component; inputs: ctrl.props" />
-      </ng-container>
-    </form>
-  </p-card>
+<div class="">
+  <form [formGroup]="entityForm" class="form-base" [ngClass]="tipoDeDiseno">
+    <div *ngFor="let controlToRender of controlsToRender" class="">
+      <ng-container
+        *ngComponentOutlet="
+          controlToRender.component;
+          injector: injector;
+          inputs: controlToRender.props
+        "
+      ></ng-container>
+    </div>
+  </form>
 </div>

@@ -1,0 +1,39 @@
+<div class="my-5">
+  <!--   <p-floatlabel variant="on">
+    <p-select
+      [options]=""
+      optionLabel="name"
+      id="Tipo"
+      class="w-full md:w-56"
+    />
+    <label for="Tipo">Tipo</label>
+  </p-floatlabel>
+</div>
+<div>
+  <p-floatlabel variant="on">
+    <textarea
+      id="notas"
+      rows="7"
+      cols="40"
+      pTextarea
+      style="resize: none"
+    ></textarea>
+    <label for="notas">Notas</label>
+  </p-floatlabel>
+</div> -->
+  <app-dynamic-form
+    [tipoDeDiseno]="'clasico'"
+    [configFromParent]="formConfig"
+    (formCreated)="handleFormCreated($event)"
+  ></app-dynamic-form>
+  <div class="flex justify-content-end gap-3 mt-3">
+    <buttom
+      pButton
+      label="Guardar"
+      severity="primary"
+      size="large"
+      (click)="guardarDiagnostico()"
+    ></buttom>
+    <buttom pButton label="cancel" severity="secondary"></buttom>
+  </div>
+</div>

@@ -4,13 +4,36 @@
     <small id="username-help">Enter your username to reset your password.</small>
 </div> -->
 
-<div class="flex flex-col gap-3 mb-3">
-  <label class="col-6" [for]="id">{{ label }}</label>
+<div class="w-full flex flex-column justify-content-between gap-3">
+  <label class="mr-2 col-12" [for]="id">{{ label }}</label>
   <input
     pInputText
     [id]="id"
     [placeholder]="placeholder"
     [formControl]="control"
-    class="col-5"
+    aria-describedby="username-help"
+    class=""
   />
+  @if (control.invalid && (control.dirty || control.touched)) {
+
+  <small id="username-help" class="text-red-500 text-xs mt-1">
+    @if (control.errors?.['required']) {
+
+    <div>Este campo es requerido.</div>
+    } @if (control.errors?.['minlength']) {
+
+    <div>
+      Mínimo {{ control.errors?.['minlength'].requiredLength }} caracteres.
+    </div>
+    } @if (control.errors?.['maxlength']) {
+
+    <div>
+      Máximo {{ control.errors?.['maxlength'].requiredLength }} caracteres.
+    </div>
+    } @if (control.errors?.['email']) {
+
+    <div>Formato de correo electrónico inválido.</div>
+    }
+  </small>
+  }
 </div>

@@ -1,4 +1,4 @@
-<div class="my-4 overflow-x: auto">
+<!-- <div class="my-4 overflow-x: auto">
   <p-card>
     <ng-template #title>
       <p class="text-blue-900">Table-Dynamic</p>
@@ -52,3 +52,69 @@
     </div>
   </p-card>
 </div>
+ -->
+
+<!-- //////////// -->
+<div class="">
+  <p-card>
+    <p-table
+      *ngIf="filas?.length && columnas?.length"
+      [value]="filas"
+      [responsiveLayout]="'scroll'"
+      [paginator]="true"
+      [rows]="5"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          @for (col of columnas; track col.field) {
+          <th>{{ col.header }}</th>
+          }
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-rowData>
+        <tr>
+          @for (col of columnas; track col.field) {
+          <td>
+            @switch (col.type) { @case ('image') {
+            <img
+              [src]="rowData?.[col.field]"
+              width="50"
+              height="50"
+              loading="lazy"
+              alt="Imagen"
+            />
+            } @case ('date') {
+            {{ rowData?.[col.field] | date: 'short' }}
+            } @case ('actions') {
+            <div class="w-5rem">
+              <span>
+                <button
+                  pButton
+                  icon="pi pi-pencil"
+                  class="p-button-sm p-button-info"
+                  (click)="edit.emit(rowData?.id)"
+                ></button>
+              </span>
+              <span>
+                <button
+                  pButton
+                  icon="pi pi-trash"
+                  class="p-button-sm p-button-danger ml-2"
+                  (click)="remove.emit(rowData?.id)"
+                ></button>
+              </span>
+            </div>
+
+            } @default {
+            {{ rowData?.[col.field] ?? '-' }}
+            } }
+          </td>
+          }
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+</div>
+
+<!-- //////// -->

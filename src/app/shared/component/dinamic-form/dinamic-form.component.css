@@ -1,0 +1,31 @@
+.form-base { 
+  width: 100%;   
+}
+
+.moderno{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Dos columnas de igual tamaño */
+  gap: 2em; /* Espacio entre filas y columnas */
+}
+
+@media (max-width: 768px){
+  .moderno{
+     display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  }
+}
+
+.clasico{
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em; /* Espacio entre los campos */   
+} 
+ 
+.modernoII {
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+

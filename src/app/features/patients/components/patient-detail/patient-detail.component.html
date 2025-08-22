@@ -1,0 +1,67 @@
+<p-toast></p-toast>
+
+<div class="p-4">
+  <p-card header="Editar Paciente" *ngIf="formConfig(); else loadingTpl">
+    <div class="flex aling-items-center justify-content-between gap-4 my-5">
+      <p-button
+        label="Guardar Cambios"
+        icon="pi pi-check"
+        size="large"
+        (onClick)="onSubmit()"
+        [disabled]="detailForm?.invalid || detailForm?.pristine"
+      ></p-button>
+
+      <button
+        pButton
+        label="Agregar detalles"
+        severity="info"
+        size="large"
+        (click)="showDialog('dialogI')"
+      ></button>
+      <button
+        pButton
+        label="Contacto de refererncia "
+        severity="info"
+        size="large"
+        (click)="showDialog('dialogII')"
+      ></button>
+      <p-button
+        label="Regresar"
+        size="large"
+        icon="pi pi-times"
+        severity="secondary"
+        (onClick)="goBack()"
+      ></p-button>
+    </div>
+    <hr class="border-black-alpha-10 mb-3" />
+    <app-dynamic-form
+      [tipoDeDiseno]="'moderno'"
+      [configFromParent]="formConfig()!"
+      (formCreated)="onFormCreated($event)"
+    ></app-dynamic-form>
+  </p-card>
+  <p-dialog
+    header="Diagnostico"
+    [(visible)]="visibleDialogI"
+    [style]="{ width: '30rem' }"
+    modal="true"
+  >
+    <app-patient-diagnosis-form></app-patient-diagnosis-form>
+  </p-dialog>
+
+  <p-dialog
+    header="Contacto de refererncia"
+    [(visible)]="visibleDialogII"
+    [style]="{ width: '30rem' }"
+    modal="true"
+  >
+    <app-patient-contact-reference></app-patient-contact-reference>
+  </p-dialog>
+</div>
+
+<ng-template #loadingTpl>
+  <div class="flex justify-content-center align-items-center h-full">
+    <p-progressSpinner></p-progressSpinner>
+    <p class="ml-3 text-lg font-bold">Cargando paciente...</p>
+  </div>
+</ng-template>

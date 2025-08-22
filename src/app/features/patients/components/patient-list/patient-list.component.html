@@ -1,0 +1,75 @@
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+<div class="p-4">
+  <!-- <fieldset class="flex">
+    <form class="w-full">
+      <div class="p-4 col-9">
+        <div class="field grid">
+          <label for="Centro" class="col-12 mb-2 md:col-2 md:mb-0 text-white"
+            >Centro</label
+          >
+          <div class="col-12 md:col-10">
+            <input
+              class="w-full"
+              id="Centro"
+              pInputText
+              type="text"
+              placeholder="Centro"
+              pSize="large"
+            />
+          </div>
+        </div>
+        <div class="field grid">
+          <label for="nombre" class="col-12 mb-2 md:col-2 md:mb-0 text-white"
+            >Nombre</label
+          >
+          <div class="col-12 md:col-10">
+            <input
+              class="w-full"
+              id="nombre"
+              pInputText
+              type="text"
+              placeholder="Nombre"
+              pSize="large"
+            />
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="col-3 flex align-items-center justify-content-center">
+      <button pButton label="Buscar" severity="primary" class="w-10"></button>
+    </div>
+  </fieldset> -->
+  <fieldset class="border-round">
+    <div class="grid pl-2 text-white">
+      <!-- ✅ Renderiza tu formulario de búsqueda dinámico aquí -->
+      <div class="col-9">
+        <app-dynamic-form
+          [configFromParent]="formConfig"
+          [tipoDeDiseno]="'moderno'"
+          (formCreated)="onSearchFormCreated($event)"
+        ></app-dynamic-form>
+      </div>
+
+      <!-- ✅ El botón de búsqueda llama a tu nuevo método `search()` -->
+      <div class="col-3 flex align-items-center justify-content-center">
+        <button
+          pButton
+          label="Buscar"
+          severity="primary"
+          class="w-10"
+          (click)="search()"
+        ></button>
+      </div>
+    </div>
+  </fieldset>
+
+  <h2 class="text-white py-4">Pacientes</h2>
+
+  <app-table-dynamic
+    [columnas]="columnas"
+    [filas]="patients()"
+    (edit)="edit($event)"
+    (remove)="remove($event)"
+  />
+</div>

@@ -7,12 +7,23 @@ export interface SelectItem {
 export interface Propiedad {
   columnName: string;
   label: string;
-  inputType: string;
+  type?: string;
+  inputType:
+    | 'text'
+    | 'select'
+    | 'autocomplete'
+    | 'password'
+    | 'date'
+    | 'textarea'
+    | 'checkbox';
+  isReadOnly?: boolean;
   placeholder: string;
   maxLength: number | null;
+  minLength: number;
   isNullable: boolean;
-  selectItems: SelectItem[] | null;
-  validaciones: string[];
+  selectItems?: { value: string; label: string }[] | null;
+  validaciones?: string[];
+  searchKey?: string;
 }
 
 export interface FormConfig {

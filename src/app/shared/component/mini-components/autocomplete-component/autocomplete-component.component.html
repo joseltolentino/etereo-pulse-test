@@ -1,12 +1,19 @@
-<div class="flex flex-col gap-3 mb-3">
-  <label class="col-6" [for]="id">{{ label }}</label>
-  <p-autocomplete
+<div class="gap-3 mb-3 flex flex-column">
+  <label class="col-12" [for]="id">{{ label }}</label>
+  <!--   <p-autocomplete
     [inputId]="id"
     [formControl]="control"
     [suggestions]="filteredOptions"
     (completeMethod)="filter($event)"
-    [field]="'label'"
     [placeholder]="placeholder"
     [dropdown]="true"
-  />
+  /> -->
+  <p-autoComplete
+    [formControl]="control"
+    [suggestions]="suggestions()"
+    (completeMethod)="filterFunction($event.query)"
+    optionLabel="'label'"
+    [placeholder]="placeholder"
+  >
+  </p-autoComplete>
 </div>

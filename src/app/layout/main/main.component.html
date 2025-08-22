@@ -1,14 +1,9 @@
-<div class="">
-  <div class="flex w-full max-h-screen overflow-y-auto scrollNoVisible">
-    <div class="overflow-y-auto scrollNoVisible">
-      <app-sidebar></app-sidebar>
-    </div>
+<div class="flex max-h-screen overflow-y-auto scrollNoVisible">
+  <aside class="">
+    <app-sidebar></app-sidebar>
+  </aside>
 
-    <div class="p-4 mx-auto bg-blue-50 overflow-y-auto scrollNoVisible">
-      <app-table-dynamic></app-table-dynamic>
-      <app-promotions-adaptative></app-promotions-adaptative>
-      <app-dynamic-form></app-dynamic-form>
-      <router-outlet></router-outlet>
-    </div>
-  </div>
+  <main class="dock-window w-full overflow-y-auto scrollNoVisible">
+    <router-outlet></router-outlet>
+  </main>
 </div>

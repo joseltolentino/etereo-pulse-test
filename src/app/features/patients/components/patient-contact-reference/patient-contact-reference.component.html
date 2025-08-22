@@ -1,0 +1,21 @@
+<div>
+  <app-dynamic-form
+    [tipoDeDiseno]="'clasico'"
+    [configFromParent]="formConfig"
+    (formCreated)="onFormCreated($event)"
+  ></app-dynamic-form>
+  <div class="mt-3 flex justify-content-end gap-3 mt-3">
+    <button
+      pButton
+      label="Guardar"
+      severity="primary"
+      (click)="guardar()"
+    ></button>
+    <button
+      pButton
+      label="Cancelar"
+      severity="secondary"
+      (click)="guardar()"
+    ></button>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+/* import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
@@ -60,5 +60,81 @@ export class TableDynamicComponent implements OnInit {
 
   editar(fila: any) {
     console.log(`Editar: ${JSON.stringify(fila)}`);
+  }
+}
+  */
+
+///////////
+
+// table-dynamic.component.ts
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+
+@Component({
+  selector: 'app-table-dynamic',
+  standalone: true,
+  imports: [CommonModule, TableModule, ButtonModule, CardModule],
+  templateUrl: './table-dynamic.component.html',
+})
+export class TableDynamicComponent implements OnInit {
+  @Input() title: string = '';
+  @Input() filas: any[] = [];
+  @Input() columnas: { field: string; header: string; type: string }[] = [];
+  @Output() edit = new EventEmitter<number>();
+  @Output() remove = new EventEmitter<number>();
+
+  ngOnInit(): void {
+    if (this.columnas.length === 0 && this.filas.length > 0) {
+      this.generateColumns(this.filas);
+    }
+  }
+
+  generateColumns(data: any[]) {
+    const allUniqueKeys = new Set<string>();
+
+    data.forEach((item) => {
+      Object.keys(item).forEach((key) => {
+        allUniqueKeys.add(key);
+      });
+    });
+
+    this.columnas = Array.from(allUniqueKeys).map((key) => {
+      let type = 'text';
+      if (
+        key.toLowerCase().includes('avatar') ||
+        key.toLowerCase().includes('imagen')
+      ) {
+        type = 'image';
+      } else if (key.toLowerCase().includes('fecha')) {
+        type = 'date';
+      } else if (key === 'id') {
+        type = 'actions';
+      }
+
+      return {
+        field: key,
+        header: this.capitalizar(key),
+        type,
+      };
+    });
+  }
+
+  capitalizar(texto: string): string {
+    return texto.charAt(0).toUpperCase() + texto.slice(1);
+  }
+
+  /*  editar(fila: any) {
+    this.edit.emit(fila);
+  }
+
+  eliminar(id: number) {
+    this.remove.emit(id);
+  }
+ */
+  trackByField(index: number, item: any): string {
+    return item.field;
   }
 }

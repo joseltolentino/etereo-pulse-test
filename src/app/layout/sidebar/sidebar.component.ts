@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 
-import { Ripple, RippleModule } from 'primeng/ripple';
+import { DividerModule } from 'primeng/divider';
+import { Ripple } from 'primeng/ripple';
 import { DrawerModule } from 'primeng/drawer';
-
 import { StyleClass } from 'primeng/styleclass';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Subject, takeUntil } from 'rxjs';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -15,11 +16,11 @@ import { Subject, takeUntil } from 'rxjs';
   imports: [
     CommonModule,
     ButtonModule,
-
+    DividerModule,
     Ripple,
-    RippleModule,
     StyleClass,
     DrawerModule,
+    RouterModule,
   ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
@@ -27,10 +28,18 @@ import { Subject, takeUntil } from 'rxjs';
 export class SidebarComponent {
   visible: boolean = false;
   isMobile: boolean = true; // Bandera para saber si estamos en móvil
+  currentUrl: string = '';
 
   private destroy$ = new Subject<void>();
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private router: Router
+  ) {
+    this.router.events.subscribe(() => {
+      this.currentUrl = this.router.url;
+    });
+  }
 
   ngOnInit() {
     this.breakpointObserver
@@ -73,5 +82,8 @@ export class SidebarComponent {
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+  goToLogin(): void {
+    this.router.navigate(['/login']);
   }
 }

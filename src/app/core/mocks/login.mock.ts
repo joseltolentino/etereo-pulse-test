@@ -1,4 +1,4 @@
-import { LoginDto } from '../models/login.dto';
+import { LoginDto } from '../Dto/login.dto';
 
 export const loginBase: LoginDto = {
   email: '',

@@ -1,0 +1,13 @@
+<div class="flex flex-column justify-content-between gap-3">
+  <label [for]="id">{{ label }}</label>
+  <textarea
+    [formControl]="control"
+    [id]="id"
+    [placeholder]="placeholder"
+    pInputTextarea
+    style="resize: none"
+    class=""
+    rows="5"
+    cols="50"
+  ></textarea>
+</div>

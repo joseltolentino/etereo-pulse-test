@@ -1,0 +1,48 @@
+<div
+  class="fndo-login flex justify-content-center align-items-center min-h-screen"
+>
+  <p-card
+    [style]="{
+      background: 'transparent ',
+      width: '25rem',
+      border: 'solid 1px white'
+    }"
+  >
+    <div class="my-4 text-white">
+      <h2 class="text-2xl font-bold text-center mb-6">Registro de Usuario</h2>
+
+      <!-- El componente dinámico se renderizará aquí -->
+      <app-dynamic-form
+        [tipoDeDiseno]="'clasico'"
+        [configFromParent]="formConfig"
+        (formCreated)="onDynamicFormCreated($event)"
+      ></app-dynamic-form>
+
+      <div class="mt-6">
+        <p-button
+          label="Registrar"
+          icon="pi pi-user-plus"
+          styleClass="w-full p-button-primary"
+          (click)="register()"
+          [disabled]="formGrup.invalid"
+        ></p-button>
+      </div>
+      <div class="mt-6">
+        <button
+          pButton
+          label="login"
+          icon="pi pi-sign-out"
+          class="w-full"
+          severity="primary"
+          (click)="goToLogin()"
+        ></button>
+      </div>
+      @if (formGrup.invalid && formGrup.touched){
+      <div class="mt-4 text-red-600 text-sm text-center">
+        Por favor, completa todos los campos requeridos y corrige los errores.
+      </div>
+      }
+      <p-toast></p-toast>
+    </div>
+  </p-card>
+</div>
