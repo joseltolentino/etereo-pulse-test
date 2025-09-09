@@ -1,20 +1,28 @@
+<p-toast></p-toast>
 <div class="p-4">
-  <p-card header="Formulario de citas">
-    <!--  <app-dynamic-form
-      [tipoDeDiseno]="'moderno'"
-      [configFromParent]="formConfig"
-      (formCreated)="onFormCreated($event)"
-    >
-    </app-dynamic-form> -->
+  <h2 class="text-white">Formulario de citas</h2>
+  <fieldset class="p-4 text-white border-round">
     <app-dynamic-form
       [tipoDeDiseno]="'moderno'"
       [configFromParent]="formConfig"
       [searchFunctions]="searchFunctions"
       (formCreated)="onFormCreated($event)"
+      [searchOptions]="searchOptions"
     >
     </app-dynamic-form>
-    <div class="">
-      <button pButton label="Registrar Cita" severity="primary"></button>
+    <div class="flex justify-content-end mt-3 gap-3">
+      <button
+        pButton
+        label="Registrar Cita"
+        severity="primary"
+        (click)="onSubmitAppointment()"
+      ></button>
+      <button
+        pButton
+        label="Regresar"
+        severity="secondary"
+        (click)="goToAppointment()"
+      ></button>
     </div>
-  </p-card>
+  </fieldset>
 </div>

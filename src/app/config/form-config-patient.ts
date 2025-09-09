@@ -12,7 +12,10 @@ export const patientFormConfig: FormConfig = {
       minLength: 2,
       isNullable: true,
       validaciones: [],
-      // ✅ Campo de solo lectura para el ID
+      displayWith: function (value: any): string {
+        throw new Error('Function not implemented.');
+      },
+      optionLabel: '',
     },
     {
       columnName: 'nombre', // debe coincidir con PatientDto
@@ -23,6 +26,10 @@ export const patientFormConfig: FormConfig = {
       minLength: 2,
       isNullable: false,
       validaciones: ['required'],
+      displayWith: function (value: any): string {
+        throw new Error('Function not implemented.');
+      },
+      optionLabel: '',
     },
     {
       columnName: 'apellido',
@@ -33,6 +40,10 @@ export const patientFormConfig: FormConfig = {
       minLength: 2,
       isNullable: false,
       validaciones: ['required'],
+      displayWith: function (value: any): string {
+        throw new Error('Function not implemented.');
+      },
+      optionLabel: '',
     },
 
     {
@@ -49,6 +60,10 @@ export const patientFormConfig: FormConfig = {
         { value: 'femenino', label: 'Femenino' },
         { value: 'otro', label: 'Otro' },
       ],
+      displayWith: function (value: any): string {
+        throw new Error('Function not implemented.');
+      },
+      optionLabel: '',
     },
     {
       columnName: 'direccion',
@@ -59,6 +74,10 @@ export const patientFormConfig: FormConfig = {
       minLength: 5,
       isNullable: false,
       validaciones: [],
+      displayWith: function (value: any): string {
+        throw new Error('Function not implemented.');
+      },
+      optionLabel: '',
     },
     {
       columnName: 'telefono',
@@ -69,6 +88,10 @@ export const patientFormConfig: FormConfig = {
       minLength: 7,
       isNullable: false,
       validaciones: [],
+      displayWith: function (value: any): string {
+        throw new Error('Function not implemented.');
+      },
+      optionLabel: '',
     },
     {
       columnName: 'email',
@@ -79,6 +102,10 @@ export const patientFormConfig: FormConfig = {
       minLength: 5,
       isNullable: false,
       validaciones: ['email'],
+      displayWith: function (value: any): string {
+        throw new Error('Function not implemented.');
+      },
+      optionLabel: '',
     },
     {
       columnName: 'fechaNacimiento',
@@ -89,6 +116,10 @@ export const patientFormConfig: FormConfig = {
       minLength: 10,
       isNullable: false,
       validaciones: ['required', 'pattern'],
+      displayWith: function (value: any): string {
+        throw new Error('Function not implemented.');
+      },
+      optionLabel: '',
     },
     // Agrega más campos si es necesario
   ],
@@ -104,6 +135,10 @@ export const patientSearchConfig: FormConfig = {
       maxLength: null,
       minLength: 0,
       isNullable: false,
+      displayWith: function (value: any): string {
+        throw new Error('Function not implemented.');
+      },
+      optionLabel: '',
     },
     {
       columnName: 'nombre',
@@ -113,6 +148,10 @@ export const patientSearchConfig: FormConfig = {
       maxLength: null,
       minLength: 0,
       isNullable: false,
+      displayWith: function (value: any): string {
+        throw new Error('Function not implemented.');
+      },
+      optionLabel: '',
     },
   ],
 };
@@ -134,6 +173,10 @@ export const patientDiagnosisConfig: FormConfig = {
         { value: 'alergia', label: 'Alergia' },
         { value: 'otro', label: 'otro' },
       ],
+      displayWith: function (value: any): string {
+        throw new Error('Function not implemented.');
+      },
+      optionLabel: '',
     },
     {
       columnName: 'comentarios',
@@ -144,6 +187,10 @@ export const patientDiagnosisConfig: FormConfig = {
       maxLength: null,
       minLength: 0,
       isNullable: false,
+      displayWith: function (value: any): string {
+        throw new Error('Function not implemented.');
+      },
+      optionLabel: '',
     },
   ],
 };
@@ -158,6 +205,10 @@ export const patientContactReference: FormConfig = {
       maxLength: null,
       minLength: 0,
       isNullable: false,
+      displayWith: function (value: any): string {
+        throw new Error('Function not implemented.');
+      },
+      optionLabel: '',
     },
     {
       columnName: 'relacion',
@@ -167,6 +218,10 @@ export const patientContactReference: FormConfig = {
       maxLength: null,
       minLength: 0,
       isNullable: false,
+      displayWith: function (value: any): string {
+        throw new Error('Function not implemented.');
+      },
+      optionLabel: '',
     },
     {
       columnName: 'telefono',
@@ -176,6 +231,10 @@ export const patientContactReference: FormConfig = {
       maxLength: null,
       minLength: 0,
       isNullable: false,
+      displayWith: function (value: any): string {
+        throw new Error('Function not implemented.');
+      },
+      optionLabel: '',
     },
     {
       columnName: 'correo',
@@ -185,6 +244,10 @@ export const patientContactReference: FormConfig = {
       maxLength: null,
       minLength: 0,
       isNullable: false,
+      displayWith: function (value: any): string {
+        throw new Error('Function not implemented.');
+      },
+      optionLabel: '',
     },
   ],
 };

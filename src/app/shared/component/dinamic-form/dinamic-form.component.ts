@@ -315,6 +315,7 @@ import {
   OnChanges,
   SimpleChanges,
   Signal,
+  computed,
 } from '@angular/core';
 import {
   ReactiveFormsModule,
@@ -349,13 +350,13 @@ export interface FormConfigConValor extends FormConfig {
     ReactiveFormsModule,
     CardModule,
     // Asegúrate de importar los componentes dinámicos aquí
-    InputComponentComponent,
+    /*  InputComponentComponent,
     SelectComponentComponent,
     AutocompleteComponentComponent,
     PasswordComponent,
     TextareaComponent,
     DatepickerComponent,
-    CheckboxComponent,
+    CheckboxComponent, */
   ],
   templateUrl: `./dinamic-form.component.html`,
   styleUrls: ['./dinamic-form.component.css'],
@@ -365,7 +366,7 @@ export class DynamicFormComponent {
   @Input() configFromParent!: FormConfigConValor; // Input para recibir la configuración del padre
   @Output() formCreated = new EventEmitter<FormGroup>(); // Evento para emitir el FormGroup creado
   @Input() searchFunctions!: { [key: string]: (query: string) => void };
-  @Input() searchOptions!: { [key: string]: Signal<any[]> };
+  @Input() searchOptions!: Signal<{ [key: string]: any[] }>;
 
   entityForm!: FormGroup;
   entity!: FormConfigConValor;
@@ -450,7 +451,12 @@ export class DynamicFormComponent {
                 label: prop.label,
                 placeholder: prop.placeholder,
                 filterFunction: this.searchFunctions[prop.searchKey!],
-                suggestions: this.searchOptions[prop.searchKey!], // 👈 lee el signal aquí
+                suggestions: computed(
+                  () => this.searchOptions()[prop.searchKey!]
+                ),
+                displayWith: prop.displayWith,
+                optionLabel: prop.optionLabel,
+                /* prop.displayWith || ((item: any) => item.label || ''), */ // 👈 default o lo que definas// 👈 lee el signal aquí
               },
             });
           } else {

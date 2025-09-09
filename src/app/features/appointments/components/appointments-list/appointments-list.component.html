@@ -1,0 +1,54 @@
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+<div class="p-4">
+  <fieldset class="border-round mb-4">
+    <div class="md:flex text-white">
+      <div class="col-7">
+        <app-dynamic-form
+          [configFromParent]="formConfig"
+          [tipoDeDiseno]="'moderno'"
+          (formCreated)="onAppointmentFormCreated($event)"
+        ></app-dynamic-form>
+      </div>
+      <div
+        class="flex gap-3 col-12 md:align-items-center md:justify-content-between md:col-5"
+      >
+        <div class="">
+          <button
+            class="pButton"
+            pButton
+            severity="primary"
+            label="Buscar"
+            (click)="onSearch()"
+          ></button>
+        </div>
+        <div class="">
+          <button
+            class="pButton"
+            pButton
+            severity="help"
+            label="Limpiar"
+            (click)="onClearForm()"
+            [disabled]="!hasSearchValues(formValueSignal())"
+          ></button>
+        </div>
+        <div class="">
+          <button
+            pButton
+            severity="success"
+            rounded="true"
+            icon="pi pi-plus"
+            (click)="onAppointmentForm()"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <app-table-dynamic
+    [columnas]="columnas"
+    [filas]="filteredAppointments()"
+    (remove)="remove($event)"
+  >
+  </app-table-dynamic>
+</div>

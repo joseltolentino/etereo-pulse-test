@@ -1,10 +1,18 @@
 import { Routes } from '@angular/router';
-import { AppointmentsFormComponent } from './components/appointments-form/appointments-form.component';
+
+import { AppointmentsListComponent } from './components/appointments-list/appointments-list.component';
 
 export const APPOINTMENT_ROUTES: Routes = [
   {
     path: '',
-    component: AppointmentsFormComponent,
+    component: AppointmentsListComponent,
     pathMatch: 'full',
+  },
+  {
+    path: 'appointmentForm',
+    loadComponent: () =>
+      import('./components/appointments-form/appointments-form.component').then(
+        (m) => m.AppointmentsFormComponent
+      ),
   },
 ];

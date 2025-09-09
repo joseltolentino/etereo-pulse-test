@@ -26,7 +26,7 @@
       "fechanacimiento": "2 Julio 1984",
       "telefono": "555-5789",
       "fechaNacimiento": "25/12 /87",
-      "genero": "masculino",
+      "genero": "femenino",
       "direccion": "jr. Puno 225",
       "email": "adrsnchez@gmail",
       "comentarios": " ",
@@ -128,25 +128,256 @@
       "diagnosticos": " "
     }
   ],
-  "medicos": [
+  "doctors": [
     {
       "id": "1",
-      "nombre": "Dr. Ramírez",
+      "nombre": "Dr. Ramon ",
+      "apellido": "Ramírez",
       "especialidad": "Cardiología"
     },
     {
       "id": "2",
-      "nombre": "Dra. Gómez",
+      "nombre": "Dra. Micaela ",
+      "apellido": "Gómez",
       "especialidad": "Pediatría"
+    },
+    {
+      "id": "3",
+      "nombre": "Dr. Jose ",
+      "apellido": "Garcia",
+      "especialidad": "Cirugia plastica"
+    },
+    {
+      "id": "4",
+      "nombre": "Dr. Francisco ",
+      "apellido": "Barrientos",
+      "especialidad": "Dermatologia"
+    },
+    {
+      "id": "5",
+      "nombre": "Dra. Danitza ",
+      "apellido": "Zevallos",
+      "especialidad": "Cirugia cabeza y cuelo"
+    },
+    {
+      "id": "6",
+      "nombre": "Dr. Alfonso ",
+      "apellido": "Gálvez",
+      "especialidad": "Medicina fisica"
+    },
+    {
+      "id": "7",
+      "nombre": "Dr. Ricardo ",
+      "apellido": "Palma",
+      "especialidad": "Neurología"
+    },
+    {
+      "id": "8",
+      "nombre": "Dra. Julia ",
+      "apellido": "Bendezu",
+      "especialidad": "Medicina interna"
+    },
+    {
+      "id": "9",
+      "nombre": "Dr. Leo ",
+      "apellido": "Cardoso",
+      "especialidad": "Cardiología"
+    },
+    {
+      "id": "10",
+      "nombre": "Dra. Milena ",
+      "apellido": "Vasquez",
+      "especialidad": "Pediatría"
+    },
+    {
+      "id": "11",
+      "nombre": "Dra. Lucrecia ",
+      "apellido": "Ramos",
+      "especialidad": "Ginecología"
+    },
+    {
+      "id": "12",
+      "nombre": "Dr. Milton ",
+      "apellido": "House",
+      "especialidad": "Medicina general"
+    },
+    {
+      "id": "13",
+      "nombre": "Dra. Janneth ",
+      "apellido": "Wilson",
+      "especialidad": "Cardiología"
     }
   ],
-  "citas": [
+  "appointments": [
     {
       "id": "1",
-      "pacienteId": 1,
-      "medicoId": 2,
-      "fecha": "2025-08-09",
-      "hora": "10:30"
+      "doctor": "Dr. Julia Bendezu",
+      "especialidad": "Medicina interna",
+      "paciente": "Carlos Gómez",
+      "fechaHora": "2025-08-25T10:00:00",
+      "duracion": "30m",
+      "descripcion": "Chequeo general",
+      "estado": "pendiente"
+    },
+    {
+      "id": "2",
+      "doctor": "Dra. Micaela Gomez",
+      "especialidad": "Pediatría",
+      "paciente": "María Fernández",
+      "fechaHora": "2025-08-26T15:30:00",
+      "duracion": "45m",
+      "descripcion": "Consulta por alergia",
+      "estado": "confirmado"
+    },
+    {
+      "id": "3",
+      "doctor": "Dra. Lucrecia Ramos",
+      "especialidad": "Ginecología",
+      "paciente": "María Silvano",
+      "fechaHora": "2025-08-25 11:00",
+      "duracion": "45min",
+      "descripcion": "Consulta inicial",
+      "estado": "confirmado"
+    },
+    {
+      "id": "5",
+      "doctor": "Dra. Janneth Wilson",
+      "especialidad": "Cardiología",
+      "paciente": "Martha Bardales",
+      "fechaHora": "2025-08-26 15:00",
+      "duracion": "45m",
+      "descripcion": "Chequeo anual",
+      "estado": "confirmada"
+    },
+    {
+      "id": "bb9b",
+      "doctor": "Dra. Micaela  Gómez",
+      "especialidad": "Pediatría",
+      "paciente": "Luis Alberto Landeo",
+      "fechaHora": "2025-08-29T23:57:47.000Z",
+      "duracion": "45 min",
+      "descripcion": "urgente",
+      "estado": "Programada"
+    },
+    {
+      "id": "7d80",
+      "doctor": "Dra. Janneth  Wilson",
+      "especialidad": "Cardiología",
+      "paciente": "María  Lopez",
+      "fechaHora": "2025-08-29T22:20:13.000Z",
+      "duracion": "45 min",
+      "descripcion": "llamar para confirmar",
+      "estado": "Programada"
+    },
+    {
+      "id": "35cf",
+      "doctor": "Dra. Lucrecia  Ramos",
+      "especialidad": "Ginecología",
+      "paciente": "Lucía Mancilla",
+      "fechaHora": "2025-08-29T18:23:02.000Z",
+      "duracion": "60",
+      "descripcion": "confirmar",
+      "estado": "Programada"
+    },
+    {
+      "id": "76c9",
+      "doctor": "Dr. Jose  Garcia",
+      "especialidad": "Cirugia plastica",
+      "paciente": "Luis Alberto Landeo",
+      "fechaHora": "2025-08-23T04:02:59.000Z",
+      "duracion": "45 min",
+      "descripcion": "uhhljjp",
+      "estado": "Programada"
+    },
+    {
+      "id": "d6e1",
+      "doctor": "Dr. Francisco  Barrientos",
+      "especialidad": "Dermatologia",
+      "paciente": "Eve Calderon",
+      "fechaHora": "2025-08-30T22:15:05.000Z",
+      "duracion": "45 min",
+      "descripcion": "chequeo de rutina",
+      "estado": "Programada"
+    },
+    {
+      "id": "debb",
+      "doctor": "Dr. Milton  House",
+      "especialidad": "Medicina general",
+      "paciente": "Charlie Berenson",
+      "fechaHora": "2025-08-30T23:19:01.000Z",
+      "duracion": "45 min",
+      "descripcion": "regresa por dolore en el pecho",
+      "estado": "Programada"
+    },
+    {
+      "id": "e184",
+      "doctor": "Dra. Danitza  Zevallos",
+      "especialidad": "Cirugia cabeza y cuelo",
+      "paciente": "Alice Carrillo",
+      "fechaHora": "2025-08-30T13:18:43.000Z",
+      "duracion": "45 min",
+      "descripcion": "urgente",
+      "estado": "Programada"
+    },
+    {
+      "id": "ef0b",
+      "doctor": "Dra. Janneth  Wilson",
+      "especialidad": "Cardiología",
+      "paciente": "Lucía Mancilla",
+      "fechaHora": "2025-08-30T05:32:41.000Z",
+      "duracion": "45 min",
+      "descripcion": "chequeo",
+      "estado": "Programada"
+    },
+    {
+      "id": "0bd8",
+      "doctor": "Dr. Francisco  Barrientos",
+      "especialidad": "Dermatologia",
+      "paciente": "Charlie Berenson",
+      "fechaHora": "2025-08-29T05:41:11.000Z",
+      "duracion": "60 min",
+      "descripcion": "fiebre",
+      "estado": "Programada"
+    },
+    {
+      "id": "2f24",
+      "doctor": "Dra. Danitza  Zevallos",
+      "especialidad": "Cirugia cabeza y cuelo",
+      "paciente": "María  Lopez",
+      "fechaHora": "2025-08-30T05:46:26.000Z",
+      "duracion": "60 min",
+      "descripcion": "urgente",
+      "estado": "Programada"
+    },
+    {
+      "id": "67c7",
+      "doctor": "Dra. Micaela  Gómez",
+      "especialidad": "Pediatría",
+      "paciente": "Juan  Perez",
+      "fechaHora": "2025-08-30T06:14:29.000Z",
+      "duracion": "45 min",
+      "descripcion": "fnbn",
+      "estado": "Programada"
+    },
+    {
+      "id": "b03c",
+      "doctor": "Dr. Jose  Garcia",
+      "especialidad": "Cirugia plastica",
+      "paciente": "Charlie Berenson",
+      "fechaHora": "2025-09-01T00:48:14.000Z",
+      "duracion": "45 min",
+      "descripcion": "urgente",
+      "estado": "Programada"
+    },
+    {
+      "id": "3637",
+      "doctor": "Dra. Danitza  Zevallos",
+      "especialidad": "Cirugia cabeza y cuelo",
+      "paciente": "María  Lopez",
+      "fechaHora": "2025-08-31T04:47:20.000Z",
+      "duracion": "45 min",
+      "descripcion": "urgente",
+      "estado": "Programada"
     }
   ],
   "historias": [

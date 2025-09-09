@@ -14,24 +14,10 @@ export class AutocompleteComponentComponent {
   @Input() id!: string;
   @Input() label!: string;
   @Input() placeholder!: string;
-  @Input() options: SelectItem[] = [];
   @Input() filterFunction!: (query: string) => void;
   @Input() suggestions!: Signal<any[]>;
-
-  filteredOptions: SelectItem[] = [];
-
-  /*   filter(event: any) {
-    const query = event.query.toLowerCase();
-    this.filteredOptions = this.options.filter(item =>
-      item.label.toLowerCase().includes(query)
-    );
-  } */
-  ngOnChanges(changes: SimpleChanges) {
-    // Cuando cambian las opciones (señal del padre), actualiza la lista
-    if (changes['options'] && changes['options'].currentValue) {
-      this.filteredOptions = changes['options'].currentValue;
-    }
-  }
+  @Input() displayWith!: (item: any) => string;
+  @Input() optionLabel!: string; // Función para mostrar texto en input y dropdown
 
   filter(event: any) {
     if (this.filterFunction) {

@@ -49,6 +49,15 @@ h3 {
   margin-right: auto;
   min-height: 80%;
 }
+.pButton{
+  width: 12rem;
+}
+@media (max-width: 768px) {
+  .pButton {
+    width: 6rem;
+  }
+}
+
 
 @media (min-width: 576px) {
   .container {

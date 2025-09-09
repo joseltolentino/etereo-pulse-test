@@ -24,6 +24,8 @@ export interface Propiedad {
   selectItems?: { value: string; label: string }[] | null;
   validaciones?: string[];
   searchKey?: string;
+  displayWith: (value: any) => string;
+  optionLabel: string;
 }
 
 export interface FormConfig {

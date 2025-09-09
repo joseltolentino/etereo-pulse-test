@@ -1,10 +1,10 @@
 export interface AppointmentDto {
-  id?: number;
-  idPaciente: number; // Referencia al ID del paciente
-  idDoctor: number; // Referencia al ID del doctor
-  fechaCita: string;
+  id?: number; // lo genera json-server
+  doctor: string; // siempre guardar solo nombreCompleto
   especialidad: string;
-  horaCita: string;
-  estado: 'pendiente' | 'atendida' | 'cancelada';
-  motivo?: string;
+  paciente: string; // siempre guardar solo nombreCompleto
+  fechaHora: string; // ISO string: "2025-08-26T15:30:00"
+  duracion: string;
+  descripcion?: string;
+  estado: 'Pendiente' | 'Confirmada' | 'Completada' | 'Cancelada';
 }

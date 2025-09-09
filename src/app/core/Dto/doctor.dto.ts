@@ -1,4 +1,4 @@
-export interface MedicDto {
+export interface DoctorDto {
   id?: number;
   nombre: string;
   apellido: string;

@@ -14,6 +14,10 @@ export const formConfigRegister: FormConfig = {
       inputType: 'text', // Asegúrate de que inputType esté definido
       isNullable: false,
       selectItems: null,
+      displayWith: function (value: any): string {
+        throw new Error('Function not implemented.');
+      },
+      optionLabel: '',
     },
     {
       columnName: 'email',
@@ -26,6 +30,10 @@ export const formConfigRegister: FormConfig = {
       minLength: 0,
       isNullable: false,
       selectItems: null,
+      displayWith: function (value: any): string {
+        throw new Error('Function not implemented.');
+      },
+      optionLabel: '',
     },
     {
       columnName: 'password',
@@ -38,6 +46,10 @@ export const formConfigRegister: FormConfig = {
       maxLength: 10, // Añadido un maxLength razonable
       isNullable: false,
       selectItems: null,
+      displayWith: function (value: any): string {
+        throw new Error('Function not implemented.');
+      },
+      optionLabel: '',
     },
   ],
 };

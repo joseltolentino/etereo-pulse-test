@@ -40,7 +40,7 @@ export const routes: Routes = [
           ), // Esta importación es correcta
       },
       {
-        path: 'appointment',
+        path: 'appointments',
         loadChildren: () =>
           import('./features/appointments/appointments.routes').then(
             (m) => m.APPOINTMENT_ROUTES

@@ -1,6 +1,6 @@
-import { MedicDto } from '../Dto/medic.dto';
+import { DoctorDto } from '../Dto/doctor.dto';
 
-export const MEDICOS_MOCK: MedicDto[] = [
+export const MEDICOS_MOCK: DoctorDto[] = [
   {
     id: 1,
     nombre: 'Dra. Camila',

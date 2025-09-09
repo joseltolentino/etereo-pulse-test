@@ -1,19 +1,21 @@
 <div class="gap-3 mb-3 flex flex-column">
   <label class="col-12" [for]="id">{{ label }}</label>
-  <!--   <p-autocomplete
+
+  <p-autoComplete
     [inputId]="id"
     [formControl]="control"
-    [suggestions]="filteredOptions"
+    [suggestions]="suggestions()"
     (completeMethod)="filter($event)"
     [placeholder]="placeholder"
     [dropdown]="true"
-  /> -->
-  <p-autoComplete
-    [formControl]="control"
-    [suggestions]="suggestions()"
-    (completeMethod)="filterFunction($event.query)"
-    optionLabel="'label'"
-    [placeholder]="placeholder"
+    [forceSelection]="true"
+    [optionLabel]="optionLabel"
+    autocomplete="on"
+    selectOnFocus="true"
   >
+    <ng-template let-item pTemplate="item">
+      {{ displayWith(item) }}
+    </ng-template>
+    <!--  -->
   </p-autoComplete>
 </div>
