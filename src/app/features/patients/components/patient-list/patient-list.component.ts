@@ -63,26 +63,36 @@ export class PatientListComponent implements OnInit {
     const all = this.allPatients();
     const search = this.searchData();
 
-    if (!search || Object.values(search).every((value) => !value)) {
+    if (
+      !search ||
+      Object.values(search).every((v) => !v || String(v).trim() === '')
+    )
       return all;
-    }
 
-    //filtra la lista de pacientes segun los criterios del formulario
-    return all.filter((patient) => {
-      let match = true;
-      if (search.centro && patient.centro) {
-        match =
-          match &&
-          patient.centro.toLowerCase().includes(search.centro.toLowerCase());
-      }
-      if (search.nombre) {
-        const searchTerm = search.nombre.toLowerCase();
-        match =
-          match &&
-          (patient.nombre.toLowerCase().includes(searchTerm) ||
-            patient.apellido.toLocaleLowerCase().includes(searchTerm));
-      }
-      return match;
+    const normalize = (value: any): string =>
+      String(value ?? '')
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .trim();
+
+    const searchCentro = normalize(search.centro);
+    const searchNombre = normalize(search.nombre);
+    const searchWords = searchNombre.split(/\s+/);
+
+    return all.filter((p) => {
+      const nombrePaciente = normalize(p.nombre);
+      const apellidoPaciente = normalize(p.apellido);
+      const centroPaciente = normalize(p.centro);
+
+      const centroMatch =
+        !searchCentro || centroPaciente.includes(searchCentro);
+      const nombreMatch = searchWords.every(
+        (word) =>
+          nombrePaciente.includes(word) || apellidoPaciente.includes(word)
+      );
+
+      return centroMatch && nombreMatch;
     });
   });
 
@@ -127,6 +137,7 @@ export class PatientListComponent implements OnInit {
   ngOnInit(): void {
     if (this.allPatients().length === 0) {
       this.patientService.getPatients();
+      console.log('Datos cargados:', this.allPatients());
     }
   }
 
@@ -139,6 +150,7 @@ export class PatientListComponent implements OnInit {
   search(): void {
     if (this.searchForm) {
       // Actualiza la señal de búsqueda con los valores del formulario
+      console.log('🔎 Valores de búsqueda:', this.searchForm.value);
       this.searchData.set(this.searchForm.value);
 
       // Agrega un mensaje si la búsqueda no tiene resultados
@@ -151,6 +163,18 @@ export class PatientListComponent implements OnInit {
         });
       }
     }
+  }
+
+  onClearForm(): void {
+    this.searchForm?.reset();
+    this.searchData.set(null);
+  }
+
+  hasSearchValues(values: any): boolean {
+    if (!values) return false;
+    return Object.values(values).some(
+      (v) => v !== null && v !== undefined && v.toString().trim() !== ''
+    );
   }
 
   edit(id: number) {
@@ -176,6 +200,5 @@ export class PatientListComponent implements OnInit {
         });
       },
     });
-    // El servicio hace la petición y actualiza la señal => la vista se actualiza sola
   }
 }

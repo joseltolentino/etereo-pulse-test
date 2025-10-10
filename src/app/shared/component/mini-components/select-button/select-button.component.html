@@ -1,0 +1,12 @@
+<div class="field">
+  <label *ngIf="label" class="block mb-2 font-medium">{{ label }}</label>
+
+  <p-selectButton
+    [options]="options"
+    optionLabel="label"
+    optionValue="value"
+    [formControl]="control"
+    (onChange)="onChangeValue($event)"
+  >
+  </p-selectButton>
+</div>

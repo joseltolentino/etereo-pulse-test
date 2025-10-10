@@ -52,13 +52,21 @@
       </div>
 
       <!-- ✅ El botón de búsqueda llama a tu nuevo método `search()` -->
-      <div class="col-3 flex align-items-center justify-content-center">
+      <div class="col-3 flex flex-column justify-content-around gap-1">
         <button
           pButton
           label="Buscar"
           severity="primary"
           class="w-10"
           (click)="search()"
+        ></button>
+        <button
+          pButton
+          label="Limpiar"
+          severity="help"
+          class="w-10"
+          (click)="onClearForm()"
+          [disabled]="!hasSearchValues(searchData())"
         ></button>
       </div>
     </div>

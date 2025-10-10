@@ -28,7 +28,8 @@ import { AppointmentDto } from '../../../../core/Dto/appointments.dto';
 
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { toSignal } from '@angular/core/rxjs-interop';
-
+import { AccordionModule } from 'primeng/accordion';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-appointments-list',
   imports: [
@@ -39,6 +40,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
     ToastModule,
     ConfirmDialog,
     RouterModule,
+    AccordionModule,
+    CommonModule,
   ],
   templateUrl: './appointments-list.component.html',
   styleUrl: './appointments-list.component.css',

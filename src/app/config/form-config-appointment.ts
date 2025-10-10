@@ -168,3 +168,104 @@ export const appointmentListForm: FormConfig = {
     },
   ],
 };
+//propuesta numero 2
+export const doctorSearchConfig: FormConfig = {
+  nombreEntidad: 'doctor',
+  propiedades: [
+    {
+      columnName: 'nombre',
+      label: 'Nombre del Doctor',
+      inputType: 'text', // Usamos text para mostrarlo
+      placeholder: '',
+      maxLength: 50,
+      minLength: 2,
+      isNullable: true,
+      validaciones: [],
+      displayWith: function (value: any): string {
+        throw new Error('Function not implemented.');
+      },
+      optionLabel: '',
+    },
+    {
+      columnName: 'esspecialidad ',
+      label: 'Especialidad',
+      inputType: 'text', // Usamos text para mostrarlo
+      placeholder: '',
+      maxLength: 25,
+      minLength: 2,
+      isNullable: true,
+      validaciones: [],
+      displayWith: function (value: any): string {
+        throw new Error('Function not implemented.');
+      },
+      optionLabel: '',
+    },
+  ],
+};
+export const patientSearchConfig: FormConfig = {
+  nombreEntidad: 'paciente',
+  propiedades: [
+    {
+      columnName: 'id',
+      label: 'ID del Paciente',
+      inputType: 'text', // Usamos text para mostrarlo
+      placeholder: '',
+      maxLength: 5,
+      minLength: 2,
+      isNullable: true,
+      validaciones: [],
+      displayWith: function (value: any): string {
+        throw new Error('Function not implemented.');
+      },
+      optionLabel: '',
+    },
+    {
+      columnName: 'nombre',
+      label: 'Nombre del Paciente',
+      inputType: 'text', // Usamos text para mostrarlo
+      placeholder: '',
+      maxLength: 50,
+      minLength: 2,
+      isNullable: true,
+      validaciones: [],
+      displayWith: function (value: any): string {
+        throw new Error('Function not implemented.');
+      },
+      optionLabel: '',
+    },
+  ],
+};
+
+export const dateConfig: FormConfig = {
+  nombreEntidad: 'fecha y hora',
+  propiedades: [
+    {
+      columnName: 'fechaHora',
+      label: 'Fecha ',
+      inputType: 'date',
+      isNullable: false,
+      validaciones: ['required'],
+      placeholder: '',
+      maxLength: null,
+      minLength: 0,
+      displayWith: function (value: any): string {
+        throw new Error('Function not implemented.');
+      },
+      optionLabel: '',
+    },
+    {
+      columnName: 'Hora',
+      label: 'Hora ',
+      inputType: 'selectButton',
+      isNullable: false,
+      validaciones: ['required'],
+      placeholder: '',
+      maxLength: null,
+      minLength: 0,
+      displayWith: function (value: any): string {
+        throw new Error('Function not implemented.');
+      },
+      optionLabel: '',
+    },
+  ],
+};

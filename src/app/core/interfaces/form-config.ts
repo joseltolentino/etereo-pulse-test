@@ -15,6 +15,7 @@ export interface Propiedad {
     | 'password'
     | 'date'
     | 'textarea'
+    | 'selectButton'
     | 'checkbox';
   isReadOnly?: boolean;
   placeholder: string;

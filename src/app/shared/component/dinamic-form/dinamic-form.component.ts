@@ -334,6 +334,7 @@ import { PasswordComponent } from '../mini-components/password/password.componen
 import { TextareaComponent } from '../mini-components/textarea/textarea.component';
 import { DatepickerComponent } from '../mini-components/datepicker/datepicker.component';
 import { CheckboxComponent } from '../mini-components/checkbox/checkbox.component';
+import { SelectButtonComponent } from '../mini-components/select-button/select-button.component';
 
 export interface PropiedadConValor extends Propiedad {
   value?: any; // La propiedad value ahora es opcional
@@ -426,6 +427,16 @@ export class DynamicFormComponent {
               id: prop.columnName,
               label: prop.label,
               placeholder: prop.placeholder,
+            },
+          });
+          break;
+        case 'selectButton':
+          controls.push({
+            component: SelectButtonComponent,
+            props: {
+              control,
+              label: prop.label,
+              options: prop.selectItems || [],
             },
           });
           break;

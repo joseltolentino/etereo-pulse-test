@@ -18,9 +18,18 @@ import { ButtonModule } from 'primeng/button';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 
+import { DateComponent } from '../../../../shared/component/payment-format/date/date.component';
+
 @Component({
   selector: 'app-appointments-form',
-  imports: [DynamicFormComponent, ButtonModule, CardModule, ToastModule],
+  imports: [
+    DynamicFormComponent,
+    ButtonModule,
+    CardModule,
+    ToastModule,
+
+    DateComponent,
+  ],
   templateUrl: './appointments-form.component.html',
   styleUrl: './appointments-form.component.css',
 })
