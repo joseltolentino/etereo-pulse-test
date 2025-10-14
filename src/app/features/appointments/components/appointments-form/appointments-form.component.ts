@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+/* import { Component, inject, signal } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -18,7 +18,7 @@ import { ButtonModule } from 'primeng/button';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 
-import { DateComponent } from '../../../../shared/component/payment-format/date/date.component';
+import { ConfirmationComponent } from '../../../../shared/component/payment-format/confirmation/confirmation.component';
 
 @Component({
   selector: 'app-appointments-form',
@@ -28,7 +28,7 @@ import { DateComponent } from '../../../../shared/component/payment-format/date/
     CardModule,
     ToastModule,
 
-    DateComponent,
+    ConfirmationComponent,
   ],
   templateUrl: './appointments-form.component.html',
   styleUrl: './appointments-form.component.css',
@@ -47,7 +47,6 @@ export class AppointmentsFormComponent {
     patients: [],
     doctors: [],
   });
-  /* doctorsOptions = signal<any[]>([]); */
 
   searchFunctions = {
     patients: (query: string) => this.searchPatients(query),
@@ -64,7 +63,7 @@ export class AppointmentsFormComponent {
         ...options,
         patients: patients.map((p) => ({
           ...p,
-          nombreCompleto: `${p.nombre} ${p.apellido}`, // La propiedad para mostrar
+          nombreCompleto: `${p.nombre} ${p.apellido}`,
         })),
       }));
     });
@@ -78,7 +77,7 @@ export class AppointmentsFormComponent {
         doctors: doctors.map((d) => ({
           ...d,
 
-          nombreCompleto: `${d.nombre} ${d.apellido}`, // La propiedad para mostrar
+          nombreCompleto: `${d.nombre} ${d.apellido}`,
         })),
       }));
     });
@@ -123,5 +122,60 @@ export class AppointmentsFormComponent {
   }
   goToAppointment() {
     this.router.navigate(['/appointments']);
+  }
+}
+ */
+import { Component, signal } from '@angular/core';
+import { ButtonModule } from 'primeng/button';
+import { StepperModule } from 'primeng/stepper';
+import { PatientDoctorComponent } from '../../../../shared/component/payment-format/patient-doctor/patient-doctor.component';
+import { ConfirmationComponent } from '../../../../shared/component/payment-format/confirmation/confirmation.component';
+import { PaymentComponent } from '../../../../shared/component/payment-format/payment/payment.component';
+import { DateComponent } from '../../../../shared/component/payment-format/date/date.component';
+
+@Component({
+  selector: 'app-appointments-form',
+  imports: [
+    StepperModule,
+    ButtonModule,
+    PatientDoctorComponent,
+    ConfirmationComponent,
+    PaymentComponent,
+    DateComponent,
+  ],
+  templateUrl: './appointments-form.component.html',
+  styleUrls: ['./appointments-form.component.css'],
+})
+export class AppointmentsFormComponent {
+  activeStep = signal(1);
+
+  onStepperChange(newValue: number | undefined) {
+    this.activeStep.set(newValue ?? 1);
+  }
+  // Estado compartido entre pasos
+  appointmentData = signal<any>({
+    patient: null,
+    doctor: null,
+    description: '',
+  });
+
+  next(step: number) {
+    this.activeStep.set(step);
+  }
+
+  back(step: number) {
+    this.activeStep.set(step);
+  }
+
+  onPatientDoctorSelected(data: any) {
+    this.appointmentData.set({
+      ...this.appointmentData(),
+      ...data,
+    });
+    this.next(2);
+  }
+
+  onConfirmed() {
+    this.next(3);
   }
 }

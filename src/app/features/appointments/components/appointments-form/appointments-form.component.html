@@ -1,4 +1,4 @@
-<p-toast></p-toast>
+<!-- <p-toast></p-toast>
 <div class="p-4">
   <h2 class="text-white">Formulario de citas</h2>
   <fieldset class="p-4 text-white border-round">
@@ -26,4 +26,114 @@
     </div>
   </fieldset>
 </div>
-<app-date></app-date>
+<app-confirmation></app-confirmation>
+ -->
+<p-stepper
+  [value]="activeStep()!"
+  (valueChange)="onStepperChange($event)"
+  class="basis-[50rem]"
+  [linear]="true"
+>
+  <p-step-list>
+    <p-step [value]="1">Paciente / Doctor</p-step>
+    <p-step [value]="2">Date</p-step>
+    <p-step [value]="3">Confirmación</p-step>
+    <p-step [value]="4">Pago</p-step>
+  </p-step-list>
+
+  <p-step-panels>
+    <!-- Paso 1 -->
+
+    <p-step-panel [value]="1">
+      <ng-template #content let-activateCallback="activateCallback">
+        <app-patient-doctor (selected)="onPatientDoctorSelected($event)" />
+        <div class="flex justify-content-end gap-2 mt-3 mr-4">
+          <p-button
+            label="Continuar"
+            icon="pi pi-arrow-right"
+            (click)="next(2)"
+            severity="primary"
+            styleClass="pButton"
+          />
+        </div>
+      </ng-template>
+    </p-step-panel>
+
+    <!-- Paso 2 -->
+    <p-step-panel [value]="2">
+      <ng-template #content let-activateCallback="activateCallback">
+        <app-date />
+
+        <div class="flex justify-content-end mt-5 gap-3 mr-4">
+          <p-button
+            label="Atrás"
+            icon="pi pi-arrow-left"
+            (click)="back(1)"
+            severity="secondary"
+            styleClass="pButton"
+          ></p-button>
+
+          <p-button
+            label="Continuar"
+            icon="pi pi-arrow-right"
+            (click)="next(3)"
+            severity="primary"
+            styleClass="pButton"
+          ></p-button>
+        </div>
+      </ng-template>
+    </p-step-panel>
+
+    <!-- Paso 3 -->
+    <p-step-panel [value]="3">
+      <ng-template #content let-activateCallback="activateCallback">
+        <app-confirmation [data]="appointmentData()" />
+
+        <div class="flex justify-content-end mt-5 gap-3 mr-4">
+          <p-button
+            label="Atrás"
+            icon="pi pi-arrow-left"
+            (click)="back(2)"
+            severity="secondary"
+            styleClass="pButton"
+          ></p-button>
+
+          <p-button
+            label="Confirmar"
+            icon="pi pi-arrow-right"
+            iconPos="right"
+            (click)="next(4)"
+            severity="primary"
+            styleClass="pButton"
+          ></p-button>
+        </div>
+      </ng-template>
+    </p-step-panel>
+
+    <!-- Paso 4 -->
+    <p-step-panel [value]="4">
+      <ng-template #content let-activateCallback="activateCallback">
+        <app-payment />
+
+        <div class="flex justify-content-end mt-5 gap-3 mr-4">
+          <p-button
+            label="Atrás"
+            icon="pi pi-arrow-left"
+            (click)="back(3)"
+            severity="secondary"
+            styleClass="pButton"
+          ></p-button>
+
+          <p-button
+            label="Finalizar"
+            icon="pi pi-check-square"
+            iconPos="right"
+            (click)="next(1)"
+            severity="primary"
+            styleClass="pButton"
+          ></p-button>
+        </div>
+      </ng-template>
+    </p-step-panel>
+  </p-step-panels>
+</p-stepper>

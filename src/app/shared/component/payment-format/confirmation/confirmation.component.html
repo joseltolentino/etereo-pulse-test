@@ -1,1 +1,70 @@
-<p>confirmation works!</p>
+<div class="p-4">
+  <fieldset class="p-4 border-round shadow-2">
+    <h3 class="text-center mb-4 text-primary font-semibold">
+      Confirmación de Datos
+    </h3>
+
+    <div class="w-full md:flex justify-content-around gap-5 text-900">
+      <!-- Resumen -->
+      <article class="w-full md:w-5">
+        <h4 class="mb-3 text-primary">Resumen</h4>
+        <p-card class="shadow-1">
+          <div class="grid">
+            <div class="col-6 font-medium">Nombres:</div>
+            <div class="col-6">Juan</div>
+
+            <div class="col-6 font-medium">Apellido Paterno:</div>
+            <div class="col-6">Dago</div>
+
+            <div class="col-6 font-medium">Apellido Materno:</div>
+            <div class="col-6">Penny</div>
+
+            <div class="col-6 font-medium">Tipo de Documento:</div>
+            <div class="col-6">DNI</div>
+
+            <div class="col-6 font-medium">N° de Documento:</div>
+            <div class="col-6">44444444</div>
+
+            <div class="col-6 font-medium">Estado:</div>
+            <div class="col-6">
+              <span class="text-green-600 font-semibold">Activo</span>
+            </div>
+          </div>
+        </p-card>
+      </article>
+
+      <!-- Descripción -->
+      <article class="w-full md:w-5">
+        <h4 class="mb-3 text-primary">Descripción</h4>
+        <p-card class="shadow-1">
+          <textarea
+            rows="6"
+            pTextarea
+            [autoResize]="true"
+            class="w-full"
+            placeholder="Añade una descripción..."
+          >
+Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet iste ad consectetur molestias odio, explicabo officia numquam reiciendis error optio eos facere sunt quas distinctio, quis hic corrupti totam aliquid!</textarea
+          >
+        </p-card>
+      </article>
+    </div>
+
+    <!-- Botones -->
+    <!--  <div class="flex justify-content-end mt-5 gap-3">
+      <p-button
+        label="Atrás"
+        icon="pi pi-arrow-left"
+        severity="secondary"
+        styleClass="pButton"
+      ></p-button>
+
+      <p-button
+        label="Continuar"
+        icon="pi pi-arrow-right"
+        severity="primary"
+        styleClass="pButton"
+      ></p-button>
+    </div> -->
+  </fieldset>
+</div>
