@@ -1,1 +1,55 @@
-<p>payment works!</p>
+<div class="p-4">
+  <fieldset class="p-4 border-round">
+    <div class="gap-5 md:flex justify-content-around">
+      <article class="w-full md:w-5">
+        <h4 class="mb-3 text-primary">Resumen</h4>
+        <p-card class="shadow-1">
+          <div class="grid">
+            <div class="col-6 font-medium">Paciente:</div>
+            <div class="col-6">Juan</div>
+
+            <div class="col-6 font-medium">Medico:</div>
+            <div class="col-6">Dago</div>
+
+            <div class="col-6 font-medium">Especialidad:</div>
+            <div class="col-6">Pediatra</div>
+
+            <div class="col-6 font-medium">Fecha:</div>
+            <div class="col-6">15/10/2025</div>
+
+            <div class="col-6 font-medium">Hora:</div>
+            <div class="col-6">12:45 am.</div>
+
+            <div class="col-6 font-medium">Estado:</div>
+            <div class="col-6">
+              <span class="text-green-600 font-semibold">Activo</span>
+            </div>
+            <div class="col-6 font-medium">Monto a Pagar:</div>
+            <div class="col-6">
+              <span class="text-green-600 font-semibold">$ 120.00</span>
+            </div>
+          </div>
+        </p-card>
+      </article>
+      <article class="w-full md:w-5">
+        <h4 class="mb-3 text-primary">Forma de Pago</h4>
+        <p-card class="shadow-1">
+          <form action="" [formGroup]="formGroup">
+            <div
+              class="field-checkbox"
+              *ngFor="let method of payment; let i = index"
+            >
+              <p-radiobutton
+                inputId="'payment' + i"
+                [name]="'name'"
+                [value]="method"
+                formControlName="name"
+              ></p-radiobutton>
+              <label for="'payment' + i" class="ml-2">{{ method.name }}</label>
+            </div>
+          </form>
+        </p-card>
+      </article>
+    </div>
+  </fieldset>
+</div>

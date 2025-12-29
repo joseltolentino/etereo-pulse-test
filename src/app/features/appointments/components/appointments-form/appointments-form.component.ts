@@ -125,13 +125,14 @@ export class AppointmentsFormComponent {
   }
 }
  */
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { StepperModule } from 'primeng/stepper';
 import { PatientDoctorComponent } from '../../../../shared/component/payment-format/patient-doctor/patient-doctor.component';
 import { ConfirmationComponent } from '../../../../shared/component/payment-format/confirmation/confirmation.component';
 import { PaymentComponent } from '../../../../shared/component/payment-format/payment/payment.component';
 import { DateComponent } from '../../../../shared/component/payment-format/date/date.component';
+import { AppointmentStateService } from '../../../../core/services/appointment-state.service';
 
 @Component({
   selector: 'app-appointments-form',
@@ -147,6 +148,7 @@ import { DateComponent } from '../../../../shared/component/payment-format/date/
   styleUrls: ['./appointments-form.component.css'],
 })
 export class AppointmentsFormComponent {
+  private appointmentState = inject(AppointmentStateService);
   activeStep = signal(1);
 
   onStepperChange(newValue: number | undefined) {
@@ -167,15 +169,19 @@ export class AppointmentsFormComponent {
     this.activeStep.set(step);
   }
 
-  onPatientDoctorSelected(data: any) {
+  /*  onPatientDoctorSelected(data: any) {
     this.appointmentData.set({
       ...this.appointmentData(),
       ...data,
     });
     this.next(2);
-  }
+  } */
 
   onConfirmed() {
     this.next(3);
   }
+
+  /*  get appointmentData() {
+    return this.appointmentState.appointment();
+  } */
 }

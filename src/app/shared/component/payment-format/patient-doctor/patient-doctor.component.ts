@@ -1,17 +1,11 @@
-/* import { Component } from '@angular/core';
-import { InputText } from 'primeng/inputtext';
-import { CardModule } from 'primeng/card';
-
-@Component({
-  selector: 'app-patient-doctor',
-  imports: [InputText, CardModule],
-  templateUrl: './patient-doctor.component.html',
-  styleUrl: './patient-doctor.component.css',
-})
-export class PatientDoctorComponent {}
- */
-
-import { Component, inject, signal } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Output,
+  inject,
+  signal,
+  computed,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, FormGroup } from '@angular/forms';
 import {
@@ -23,11 +17,11 @@ import { DoctorService } from '../../../../features/staff/services/doctors.servi
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
-
 import {
   patientSearchConfig,
   doctorSearchConfig,
 } from '../../../../config/form-config-appointment';
+import { AppointmentStateService } from '../../../../core/services/appointment-state.service';
 
 @Component({
   selector: 'app-patient-doctor',
@@ -44,12 +38,20 @@ import {
   styleUrl: './patient-doctor.component.css',
 })
 export class PatientDoctorComponent {
+  private appointmentState = inject(AppointmentStateService);
   private patientService = inject(PatientService);
   private doctorService = inject(DoctorService);
 
-  // Señales para almacenar los objetos seleccionados
-  pacienteSeleccionado = signal<any | null>(null);
-  medicoSeleccionado = signal<any | null>(null);
+  // Exponer estado al template como signals
+  pacienteSeleccionado = computed(
+    () => this.appointmentState.appointment().patient
+  );
+
+  medicoSeleccionado = computed(
+    () => this.appointmentState.appointment().doctor
+  );
+
+  @Output() selected = new EventEmitter<void>();
 
   // FormGroups creados dinámicamente
   pacienteForm!: FormGroup;
@@ -59,7 +61,7 @@ export class PatientDoctorComponent {
   pacienteConfig: FormConfigConValor = patientSearchConfig;
   medicoConfig: FormConfigConValor = doctorSearchConfig;
 
-  // Capturar FormGroups creados por DynamicForm
+  // Capturar los formularios creados
   onPacienteFormCreated(form: FormGroup) {
     this.pacienteForm = form;
   }
@@ -68,30 +70,35 @@ export class PatientDoctorComponent {
     this.medicoForm = form;
   }
 
-  // Buscar paciente y actualizar señal
+  // Buscar paciente
   buscarPaciente() {
     if (!this.pacienteForm) return;
-    const nombre = this.pacienteForm.value.nombre;
+    const nombre = this.pacienteForm.value.nombre?.trim();
+    if (!nombre) return;
+
     this.patientService.searchPatients(nombre).subscribe((res) => {
-      this.pacienteSeleccionado.set(res.length ? res[0] : null);
+      const paciente = res.length ? res[0] : null;
+      this.appointmentState.setPatient(paciente);
     });
   }
 
-  // Buscar médico y actualizar señal
+  // Buscar médico
   buscarMedico() {
     if (!this.medicoForm) return;
-    const nombre = this.medicoForm.value.nombre;
+    const nombre = this.medicoForm.value.nombre?.trim();
+    if (!nombre) return;
+
     this.doctorService.searchDoctors(nombre).subscribe((res) => {
-      this.medicoSeleccionado.set(res.length ? res[0] : null);
+      const medico = res.length ? res[0] : null;
+      this.appointmentState.setDoctor(medico);
     });
   }
+
+  // Continuar al siguiente paso
   continuar() {
-    if (this.pacienteSeleccionado() && this.medicoSeleccionado()) {
-      console.log('📅 Cita preparada:', {
-        paciente: this.pacienteSeleccionado(),
-        medico: this.medicoSeleccionado(),
-      });
-      alert('Cita lista para continuar 🚑');
+    const { patient, doctor } = this.appointmentState.appointment();
+    if (patient && doctor) {
+      this.selected.emit(); // Notifica al padre que puede avanzar
     }
   }
 }

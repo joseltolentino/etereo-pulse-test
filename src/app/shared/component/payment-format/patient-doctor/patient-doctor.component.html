@@ -19,30 +19,30 @@
 
         <div
           *ngIf="pacienteSeleccionado()"
-          class="mt-3 border-1 p-3 border-round bg-black-alpha-10"
+          class="mt-3 p-3 border-1 border-round bg-black-alpha-10"
         >
           <p>
             <span><b>Nombres</b>:</span>
-            <span>{{ pacienteSeleccionado().nombre }}</span>
+            <span>{{ pacienteSeleccionado()?.nombre }}</span>
           </p>
 
           <p>
             <b>Apellido Paterno</b> :{{
-              pacienteSeleccionado().apellidoPaterno
+              pacienteSeleccionado()?.apellidoPaterno
             }}
           </p>
           <p>
             <b>Apellido Materno</b> :{{
-              pacienteSeleccionado().apellidoMaterno
+              pacienteSeleccionado()?.apellidoMaterno
             }}
           </p>
           <p>
-            <b>Tipo Documento</b> :{{ pacienteSeleccionado().tipoDocumento }}
+            <b>Tipo Documento</b> :{{ pacienteSeleccionado()?.tipoDocumento }}
           </p>
           <p>
-            <b>Nro Documento</b> :{{ pacienteSeleccionado().numeroDocumento }}
+            <b>Nro Documento</b> :{{ pacienteSeleccionado()?.numeroDocumento }}
           </p>
-          <p><b>Estado</b> :{{ pacienteSeleccionado().estado }}</p>
+          <p><b>Estado</b> :{{ pacienteSeleccionado()?.estado }}</p>
         </div>
       </div>
 
@@ -66,18 +66,20 @@
           *ngIf="medicoSeleccionado()"
           class="mt-3 border-1 p-3 border-round bg-black-alpha-10"
         >
-          <p><b>Nombres</b> :{{ medicoSeleccionado().nombre }}</p>
+          <p><b>Nombres</b> :{{ medicoSeleccionado()?.nombre }}</p>
           <p>
-            <b>Apellido Paterno</b> :{{ medicoSeleccionado().apellidoPaterno }}
+            <b>Apellido Paterno</b> :{{ medicoSeleccionado()?.apellidoPaterno }}
           </p>
           <p>
-            <b>Apellido Materno</b> :{{ medicoSeleccionado().apellidoMaterno }}
+            <b>Apellido Materno</b> :{{ medicoSeleccionado()?.apellidoMaterno }}
           </p>
-          <p><b>Tipo Documento</b> :{{ medicoSeleccionado().tipoDocumento }}</p>
           <p>
-            <b>Nro Documento</b> :{{ medicoSeleccionado().numeroDocumento }}
+            <b>Tipo Documento</b> :{{ medicoSeleccionado()?.tipoDocumento }}
           </p>
-          <p><b>Estado</b> :{{ medicoSeleccionado().estado }}</p>
+          <p>
+            <b>Nro Documento</b> :{{ medicoSeleccionado()?.numeroDocumento }}
+          </p>
+          <p><b>Estado</b> :{{ medicoSeleccionado()?.estado }}</p>
         </div>
       </div>
     </div>

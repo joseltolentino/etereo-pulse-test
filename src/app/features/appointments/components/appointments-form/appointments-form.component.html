@@ -31,7 +31,7 @@
 <p-stepper
   [value]="activeStep()!"
   (valueChange)="onStepperChange($event)"
-  class="basis-[50rem]"
+  class="basis-[50rem] px-4"
   [linear]="true"
 >
   <p-step-list>
@@ -46,7 +46,7 @@
 
     <p-step-panel [value]="1">
       <ng-template #content let-activateCallback="activateCallback">
-        <app-patient-doctor (selected)="onPatientDoctorSelected($event)" />
+        <app-patient-doctor (selected)="next(2)" />
         <div class="flex justify-content-end gap-2 mt-3 mr-4">
           <p-button
             label="Continuar"
